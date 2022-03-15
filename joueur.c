@@ -10,22 +10,25 @@ t_player initPlayer(char * nom, bool playerOnTop)
 {
     t_player joueur;
 
-    joueur = (t_player)malloc(sizeof(t_player));    //  à vérifier sizeof(t_player) car t_player est un pointeur
+    joueur = (t_player)malloc(sizeof(struct s_player));
     joueur->nom = nom;
     joueur->listeUnite = creerPileVide();      // => NULL ,convention ?
     joueur->nbElixir = 0;
     joueur->playerOnTop = playerOnTop;
+    joueur->tourDuRoi = NULL;
+    joueur->tourClassique = NULL;
 
     return joueur;
 }
 
 /*---------------------------------------------------------*/
-/*
-bool tourRoiDetruite(t_listeUnite uniteListe)
+
+bool tourRoiDetruite(t_player player)       //  EXPLICATION
 {
-                                   // CONVENTION ?
+    return player->tourDuRoi == NULL;
 }
-*/
+
+
 /*---------------------------------------------------------*/
 
 int getElixir(t_player player)
@@ -48,17 +51,17 @@ void minusElixir(t_player player, int amount)
 }
 
 /*---------------------------------------------------------*/
-/*
+
 bool tourClassiqueDetruite(t_listeUnite player)
 {
-    CONVENTION ?
+    return player->tourClassique == NULL;
 }
-*/
+
 /*---------------------------------------------------------*/
 /*
 void supprimerUnite(t_listeUnite *unites, t_unite *uniteDetruite)
 {
-    BESOIN DE CREER DES FONCTIONS DE MANIPULATION DE LISTE (DOIS-JE LE FAIRE ?)
+    BESOIN DE CREER DES FONCTIONS DE MANIPULATION DE LISTE (DOIS-JE LE FAIRE ?)         //      A METTRE A JOUR
 }
 */
 /*---------------------------------------------------------*/

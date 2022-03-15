@@ -6,12 +6,14 @@
 
     /* Structure de données */
 
-    typedef struct
+    typedef struct s_player
     {
         char* nom;
         t_listeUnite listeUnite;
         int nbElixir;               //  Définit un joueur (playerOnTop = true => il s'agit du joueur qui a la partie haute de l’écran.
         bool playerOnTop;
+        t_unite* tourDuRoi;
+        t_unite* tourClassique;
     } *t_player;
 
     /* Prototypes de fonctions */

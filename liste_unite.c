@@ -18,13 +18,13 @@ bool estVide(t_listeUnite P)
 
 /*---------------------------------------------------------*/
 
-t_listeUnite empiler(t_listeUnite P, t_unite *unite)
+t_listeUnite empiler(t_listeUnite P, t_unite unite)
 {
     t_listeUnite nouv = creerPileVide();
 
     nouv = (t_listeUnite)malloc(sizeof(t_unite));
 
-    nouv->pData = unite;
+    nouv->pData = &unite;
     nouv->suiv = P;
 
     return nouv;
@@ -64,9 +64,9 @@ t_listeUnite depiler(t_listeUnite P)
 
 /*---------------------------------------------------------*/
 
-t_unite* tetePile(t_listeUnite P)
+t_unite tetePile(t_listeUnite P)
 {
-    return P->pData;
+    return *(P->pData);
 }
 
 /*---------------------Fonctions utilitaires---------------------------*/
