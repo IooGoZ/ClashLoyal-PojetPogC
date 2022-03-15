@@ -35,17 +35,17 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="joueur.h" />
-		<Unit filename="liste_chainee.c">
+		<Unit filename="liste_unite.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="liste_chainee.h" />
+		<Unit filename="liste_unite.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="mecaniques.c">
+		<Unit filename="mecanics.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="mecaniques.h" />
+		<Unit filename="mecanics.h" />
 		<Unit filename="unite.c">
 			<Option compilerVar="CC" />
 		</Unit>

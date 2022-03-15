@@ -9,10 +9,9 @@
 #include "unite.h"
 #include "joueur.h"
 #include "mecaniques.h"
-#include "liste_chainee.h"
+#include "liste_unite.h"
 
 int main()
 {
-    printf("Hello world!\n");
-    return 0;
+
 }
