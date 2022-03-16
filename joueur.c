@@ -7,8 +7,8 @@
 
 /*---------------------------------------------------------*/
 
-t_player initPlayer(char * nom, bool playerOnTop)
-{
+//  Initialise un joueur, avec un nom et sa position.
+t_player initPlayer(char * nom, bool playerOnTop) {
     t_player joueur;
 
     joueur = (t_player)malloc(sizeof(struct s_player));
@@ -24,6 +24,7 @@ t_player initPlayer(char * nom, bool playerOnTop)
 
 /*---------------------------------------------------------*/
 
+//  Vérifie si la tour du roi d’un joueur est détruite.
 bool tourRoiDetruite(t_player player) {
     return player->tourDuRoi == NULL;
 }
@@ -31,48 +32,58 @@ bool tourRoiDetruite(t_player player) {
 
 /*---------------------------------------------------------*/
 
-int getElixir(t_player player)
-{
+//  Retourne la quantité d’élixir d’un joueur.
+int getElixir(t_player player) {
     return player->nbElixir;
 }
 
 /*---------------------------------------------------------*/
 
-void addElixir(t_player player, int amount)
-{
+//  Ajoute une quantité d’élixir au joueur.
+void addElixir(t_player player, int amount) {
     player->nbElixir += amount;
 }
 
 /*---------------------------------------------------------*/
 
-void minusElixir(t_player player, int amount)
-{
+//  Retire une quantité d’élixir au joueur.
+void minusElixir(t_player player, int amount) {
     player->nbElixir -= amount;
 }
 
 /*---------------------------------------------------------*/
 
-bool tourClassiqueDetruite(t_player player)
-{
+// Vérifie si la tour (non-roi) d’un joueur est détruite.
+bool tourClassiqueDetruite(t_player player) {
     return player->tourClassique == NULL;
 }
 
 /*---------------------------------------------------------*/
-/*
-void supprimerUnite(t_listeUnite *unites, t_unite *uniteDetruite)
-{
-    BESOIN DE CREER DES FONCTIONS DE MANIPULATION DE LISTE (DOIS-JE LE FAIRE ?)         //      A METTRE A JOUR
+
+//  Supprime une unité à un joueur.
+void supprimerUnite(t_player player, t_unite uniteDetruite) {
+    player->listeUnite = supprimer(player->listeUnite, uniteDetruite);
 }
-*/
+
 /*---------------------------------------------------------*/
 
-bool getPlayerOnTop(t_player player)
-{
+//  Ajoute une unité à un joueur.
+void ajouterUnite(t_player player, t_unite nouvelleUnite) {
+    player->listeUnite = empiler(player->listeUnite, nouvelleUnite);
+}
+
+/*---------------------------------------------------------*/
+
+//  Retourne true si le joueur est en haut dans l’affichage.
+bool getPlayerOnTop(t_player player) {
     return player->playerOnTop;
 }
 
 /*---------------------------------------------------------*/
 
+//  Retourne la liste des unités d’un joueur.
 t_listeUnite getListeUnite(t_player player) {
     return player->listeUnite;
 }
+
+/*---------------------------------------------------------*/

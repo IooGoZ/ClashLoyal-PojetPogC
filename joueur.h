@@ -7,38 +7,50 @@
 #include "unite.h"
 
 
-    /* Structure de données */
+    /* Structures de données */
 
     typedef struct s_player
     {
         char* nom;
         t_listeUnite listeUnite;
-        int nbElixir;               //  Définit un joueur (playerOnTop = true => il s'agit du joueur qui a la partie haute de l’écran.
+        int nbElixir;
+        //  playerOnTop = true => il s'agit du joueur qui a la partie haute de l’écran.
         bool playerOnTop;
         t_unite* tourDuRoi;
         t_unite* tourClassique;
     } *t_player;
 
-    /* Prototypes de fonctions */
+    /* Signatures des fonctions */
 
-    t_player initPlayer(char * nom, bool playerOnTop);      //  Initialise un joueur, avec un nom et sa position.
+    //  Initialise un joueur, avec un nom et sa position.
+    t_player initPlayer(char * nom, bool playerOnTop);
 
-    bool tourRoiDetruite(t_player player);      //  Vérifie si la tour du roi d’un joueur est détruite.
+    //  Vérifie si la tour du roi d’un joueur est détruite.
+    bool tourRoiDetruite(t_player player);
 
-    int getElixir(t_player player);        //  Retourne la quantité d’élixir d’un joueur.
+    //  Retourne la quantité d’élixir d’un joueur.
+    int getElixir(t_player player);
 
-    void addElixir(t_player player, int amount);        //  Ajoute une quantité d’élixir au joueur.
+    //  Ajoute une quantité d’élixir au joueur.
+    void addElixir(t_player player, int amount);
 
-    void minusElixir(t_player player, int amount);      //  Retire une quantité d’élixir au joueur.
+    //  Retire une quantité d’élixir au joueur.
+    void minusElixir(t_player player, int amount);
 
-    bool tourClassiqueDetruite(t_player player);        // Vérifie si la tour (non-roi) d’un joueur est détruite.
+    // Vérifie si la tour (non-roi) d’un joueur est détruite.
+    bool tourClassiqueDetruite(t_player player);
 
-    void supprimerUnite(t_listeUnite uniteListe, t_unite *uniteDetruite);      //  Supprime une unité à un joueur.
+    //  Supprime une unité à un joueur.
+    void supprimerUnite(t_player player, t_unite uniteDetruite);
 
-    void ajouterUnite(t_listeUnite uniteListe, t_unite *nouvelleUnite);        //  Ajoute une unité à un joueur.
+    //  Ajoute une unité à un joueur.
+    void ajouterUnite(t_player player, t_unite nouvelleUnite);
 
-    bool getPlayerOnTop(t_player player);      //  Retourne true si le joueur est en haut dans l’affichage.
+    //  Retourne true si le joueur est en haut dans l’affichage.
+    bool getPlayerOnTop(t_player player);
 
-    t_listeUnite getListeUnite(t_player player);       //  Retourne la liste des unités d’un joueur.
+    //  Retourne la liste des unités d’un joueur.
+    t_listeUnite getListeUnite(t_player player);
+
 
 #endif

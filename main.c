@@ -5,6 +5,7 @@
 #include "unite.h"
 #include "joueur.h"
 #include "mecanics.h"
+#include "affichage.h"
 
 //  BOIREAU Tom
 //  DAKKOUNE Nabil

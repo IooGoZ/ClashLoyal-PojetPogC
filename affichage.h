@@ -8,4 +8,8 @@
 
 char uniteToChar(t_uniteDuJeu typeUnite);
 
+void affichePile(t_listeUnite P);
+
+void afficheEstVide(t_listeUnite P);
+
 #endif
