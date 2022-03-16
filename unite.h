@@ -30,6 +30,7 @@ typedef struct s_cell {
 	struct t_cell *suiv;
 	t_unite *pData;
 } *t_listeUnite;
+
 /* Prototypes de fonctions */
 
 
@@ -38,6 +39,20 @@ t_listeUnite quiEstAPortee(t_listeUnite player, t_unite *uniteAutreJoueur);     
 void positionneUnite(t_listeUnite uniteDuJoueur, int x, int y, t_unite unite);      //  Positionne une unité aux coordonnées (x,y).
 
 t_unite getNewUnite(t_uniteDuJeu uniteType);        //  Créer une unité du type « uniteType », avec tous les bons paramètres.
+
+
+t_unite creerTourClassique(void);
+
+t_unite creerTourRoi(void);
+
+t_unite creerChevalier(void);
+
+t_unite creerArcher(void);
+
+t_unite creerDragon(void);
+
+t_unite creerGargouille(void);
+
 
 t_cible getCible(t_unite unite);        //  Retourne le type de cible d’attaque d’une unité.
 
@@ -61,11 +76,10 @@ int getY(t_unite unite);        //  Retourne la position en y d’une unité.
 
 bool getAttaque(t_unite unite);     //  Retourne la possibilité d’attaque d’une unité.
 
-void setAttaque(t_unite unite);     //  Définit la possibilité d’attaque d’une unité.
+void setAttaque(t_unite unite, bool stat);     //  Définit la possibilité d’attaque d’une unité.
 
 
-
-t_listeUnite creerPileVide();
+t_listeUnite creerPileVide(void);
 
 bool estVide(t_listeUnite P);
 

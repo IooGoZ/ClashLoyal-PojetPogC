@@ -6,7 +6,7 @@
 //  Retourne la liste des unités adverses atteignables par une unité.
 t_listeUnite quiEstAPortee(t_listeUnite player, t_unite *uniteAutreJoueur) {
 
-    return NULL;
+	return NULL;
 }
 
 //  Positionne une unité aux coordonnées (x,y).
@@ -29,9 +29,6 @@ t_unite getNewUnite(t_uniteDuJeu uniteType) {
 		return creerDragon();
 	case gargouille:
 		return creerGargouille();
-	default :
-		return (t_unite) NULL;
-
 	}
 }
 
@@ -93,7 +90,7 @@ t_unite creerArcher() {
 	res.vitesseAttaque = 0.7;
 	res.degats = 120;
 	res.portee = 3;
-	res.vitesseDeplacement = &.0;
+	res.vitesseDeplacement = 1.0;
 	res.coutEnElixir = 2;
 
 	return res;
@@ -183,79 +180,60 @@ int getY(t_unite unite) {
 
 //  Retourne la possibilité d’attaque d’une unité.
 bool getAttaque(t_unite unite) {
-
+	return unite.peutAttaquer;
 }
 
-void setAttaque(t_unite unite) {
-
+void setAttaque(t_unite unite, bool stat) {
+	unite.peutAttaquer = stat;
 }
+
+//Piles--------------------------------------------------------------
 
 t_listeUnite creerPileVide() {
-    t_listeUnite res = (t_listeUnite) malloc(sizeof(struct s_cell));
-    res->pData=NULL;
-    res->suiv=NULL;
-    return res;
+	t_listeUnite res = (t_listeUnite) malloc(sizeof(struct s_cell));
+	res->pData = NULL;
+	res->suiv = NULL;
+	return res;
 }
-
-/*---------------------------------------------------------*/
 
 bool estVide(t_listeUnite P) {
-    return(P->pData == NULL) && (P->suiv == NULL);
+	return (P->pData == NULL) && (P->suiv == NULL);
 }
-
-/*---------------------------------------------------------*/
 
 t_listeUnite empiler(t_listeUnite P, t_unite unite) {
-    t_listeUnite nouv = (t_listeUnite)malloc(sizeof(struct s_cell));
+	t_listeUnite nouv = (t_listeUnite) malloc(sizeof(struct s_cell));
 
-    nouv->pData = &unite;
-    nouv->suiv = P;
+	nouv->pData = &unite;
+	nouv->suiv = P;
 
-    return nouv;
+	return nouv;
 }
 
-/*---------------------------------------------------------*/
-void affichePile(t_listeUnite P)
-{
-    for(t_listeUnite i = P; i != NULL ; i = i->suiv)                            //      DEFAILLANT
-    {
-        printf("\t[%c]\n", uniteToChar(i->pData->nom));
-    }
+void affichePile(t_listeUnite P) {
+	for (t_listeUnite i = P; !estVide(i); i = i->suiv) {
+		printf("[%c]\n", uniteToChar(i->pData->nom));
+	}
 }
-/*---------------------------------------------------------*/
 
-t_listeUnite depiler(t_listeUnite P)
-{
-    if(estVide(P))
-    {
-        return P;
-    } else {
+t_listeUnite depiler(t_listeUnite P) {
+	if (estVide(P)) {
+		return P;
+	} else {
 		t_listeUnite temp = P->suiv;
 		free(P);
 		return temp;
-    }
+	}
 
 }
 
-/*---------------------------------------------------------*/
-
-t_unite tetePile(t_listeUnite P)
-{
-    return *(P->pData);
+t_unite tetePile(t_listeUnite P) {
+	return *(P->pData);
 }
 
-/*---------------------Fonctions utilitaires---------------------------*/
-
-void afficheEstVide(t_listeUnite P)
-{
-    if(estVide(P))
-    {
-        printf("Ma pile d'unite est vide.\n");
-    }
-    else
-    {
-        printf("Ma pile d'unite n'est pas vide.\n");
-    }
+void afficheEstVide(t_listeUnite P) {
+	if (estVide(P)) {
+		printf("Ma pile d'unite est vide.\n");
+	} else {
+		printf("Ma pile d'unite n'est pas vide.\n");
+	}
 }
-
-/*---------------------------------------------------------*/
