@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1647416395 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\mecanics.c
+	"mecanics.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1647416388 c:\users\nabil\documents\github\clashloyal-pojetpogc\mecanics.h
+

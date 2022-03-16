@@ -1,5 +1,6 @@
 #include "joueur.h"
-#include "mecaniques.h"
+#include "mecanics.h"
+#include "liste_unite.h"
 #include <stdbool.h>
 
 

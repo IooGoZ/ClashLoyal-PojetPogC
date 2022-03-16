@@ -9,7 +9,13 @@
 
     /* Structure de données */
 
+    //  Définit la liste des unités d’un joueur.
 
+    typedef struct t_cell
+    {
+        struct t_cell *suiv;
+        t_unite *pData;
+    } *t_listeUnite;
 
     /* Prototypes de fonctions */
 

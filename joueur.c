@@ -52,7 +52,7 @@ void minusElixir(t_player player, int amount)
 
 /*---------------------------------------------------------*/
 
-bool tourClassiqueDetruite(t_listeUnite player)
+bool tourClassiqueDetruite(t_player player)
 {
     return player->tourClassique == NULL;
 }

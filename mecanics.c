@@ -1,4 +1,4 @@
-#include "mecaniques.h"
+#include "mecanics.h"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -4,6 +4,8 @@
 #ifndef JOUEUR_H_INCLUDED
 #define JOUEUR_H_INCLUDED
 
+    #include "unite.h"
+
     /* Structure de données */
 
     typedef struct s_player
