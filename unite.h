@@ -1,30 +1,18 @@
-#include "joueur.h"
-#include "mecanics.h"
-#include "liste_unite.h"
+#ifndef UNITE_H
+#define UNITE_H
+
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 
 /* Structure de données */
 
-typedef enum
-{
-	tour,
-	tourRoi,
-	archer,             //  Définit le type d’une unité.
-	chevalier,
-	dragon,
-	gargouille
-} t_uniteDuJeu;
+typedef enum e_uniteDuJeu {tour, tourRoi, archer, chevalier, dragon, gargouille} t_uniteDuJeu;
 
-typedef enum
-{
-	sol,
-	solEtAir,               //  Définit le type d’attaque possible par une unité.
-	air
-} t_cible;
+typedef enum e_cible {sol, solEtAir, air} t_cible;
 
-typedef struct
-{
+typedef struct s_unite {
 	t_uniteDuJeu nom;
 	t_cible cibleAttaquable;
 	t_cible maPosition;
@@ -38,7 +26,12 @@ typedef struct
 	int coutEnElixir;
 } t_unite;
 
+typedef struct s_cell {
+	struct t_cell *suiv;
+	t_unite *pData;
+} *t_listeUnite;
 /* Prototypes de fonctions */
+
 
 t_listeUnite quiEstAPortee(t_listeUnite player, t_unite *uniteAutreJoueur);     //  Retourne la liste des unités adverses atteignables par une unité.
 
@@ -69,3 +62,23 @@ int getY(t_unite unite);        //  Retourne la position en y d’une unité.
 bool getAttaque(t_unite unite);     //  Retourne la possibilité d’attaque d’une unité.
 
 void setAttaque(t_unite unite);     //  Définit la possibilité d’attaque d’une unité.
+
+
+
+t_listeUnite creerPileVide();
+
+bool estVide(t_listeUnite P);
+
+t_listeUnite empiler(t_listeUnite P, t_unite unite);
+
+void affichePile(t_listeUnite P);
+
+t_listeUnite depiler(t_listeUnite P);
+
+t_unite tetePile(t_listeUnite P);
+
+/* Prototypes fonctions utilitaires */
+
+void afficheEstVide(t_listeUnite P);
+
+#endif

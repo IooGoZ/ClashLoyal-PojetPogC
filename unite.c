@@ -1,15 +1,12 @@
-#include "unite.h"
-#include "joueur.h"
-#include "mecaniques.h"
-#include "liste_chainee.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "unite.h"
 
 //  Retourne la liste des unités adverses atteignables par une unité.
 t_listeUnite quiEstAPortee(t_listeUnite player, t_unite *uniteAutreJoueur) {
 
+    return NULL;
 }
 
 //  Positionne une unité aux coordonnées (x,y).
@@ -33,7 +30,7 @@ t_unite getNewUnite(t_uniteDuJeu uniteType) {
 	case gargouille:
 		return creerGargouille();
 	default :
-		return NULL;
+		return (t_unite) NULL;
 
 	}
 }
@@ -192,4 +189,73 @@ bool getAttaque(t_unite unite) {
 void setAttaque(t_unite unite) {
 
 }
+
+t_listeUnite creerPileVide() {
+    t_listeUnite res = (t_listeUnite) malloc(sizeof(struct s_cell));
+    res->pData=NULL;
+    res->suiv=NULL;
+    return res;
+}
+
+/*---------------------------------------------------------*/
+
+bool estVide(t_listeUnite P) {
+    return(P->pData == NULL) && (P->suiv == NULL);
+}
+
+/*---------------------------------------------------------*/
+
+t_listeUnite empiler(t_listeUnite P, t_unite unite) {
+    t_listeUnite nouv = (t_listeUnite)malloc(sizeof(struct s_cell));
+
+    nouv->pData = &unite;
+    nouv->suiv = P;
+
+    return nouv;
+}
+
+/*---------------------------------------------------------*/
+void affichePile(t_listeUnite P)
+{
+    for(t_listeUnite i = P; i != NULL ; i = i->suiv)                            //      DEFAILLANT
+    {
+        printf("\t[%c]\n", uniteToChar(i->pData->nom));
+    }
+}
+/*---------------------------------------------------------*/
+
+t_listeUnite depiler(t_listeUnite P)
+{
+    if(estVide(P))
+    {
+        return P;
+    } else {
+		t_listeUnite temp = P->suiv;
+		free(P);
+		return temp;
+    }
+
+}
+
+/*---------------------------------------------------------*/
+
+t_unite tetePile(t_listeUnite P)
+{
+    return *(P->pData);
+}
+
+/*---------------------Fonctions utilitaires---------------------------*/
+
+void afficheEstVide(t_listeUnite P)
+{
+    if(estVide(P))
+    {
+        printf("Ma pile d'unite est vide.\n");
+    }
+    else
+    {
+        printf("Ma pile d'unite n'est pas vide.\n");
+    }
+}
+
 /*---------------------------------------------------------*/

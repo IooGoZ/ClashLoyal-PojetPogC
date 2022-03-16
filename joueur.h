@@ -1,10 +1,11 @@
+#ifndef JOUEUR_H
+#define JOUEUR_H
+
+#include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
-#include "liste_unite.h"
+#include "unite.h"
 
-#ifndef JOUEUR_H_INCLUDED
-#define JOUEUR_H_INCLUDED
-
-    #include "unite.h"
 
     /* Structure de données */
 
@@ -22,7 +23,7 @@
 
     t_player initPlayer(char * nom, bool playerOnTop);      //  Initialise un joueur, avec un nom et sa position.
 
-    bool tourRoiDetruite(t_listeUnite uniteListe);      //  Vérifie si la tour du roi d’un joueur est détruite.
+    bool tourRoiDetruite(t_player player);      //  Vérifie si la tour du roi d’un joueur est détruite.
 
     int getElixir(t_player player);        //  Retourne la quantité d’élixir d’un joueur.
 
@@ -30,7 +31,7 @@
 
     void minusElixir(t_player player, int amount);      //  Retire une quantité d’élixir au joueur.
 
-    bool tourClassiqueDetruite(t_listeUnite player);        // Vérifie si la tour (non-roi) d’un joueur est détruite.
+    bool tourClassiqueDetruite(t_player player);        // Vérifie si la tour (non-roi) d’un joueur est détruite.
 
     void supprimerUnite(t_listeUnite uniteListe, t_unite *uniteDetruite);      //  Supprime une unité à un joueur.
 
@@ -40,4 +41,4 @@
 
     t_listeUnite getListeUnite(t_player player);       //  Retourne la liste des unités d’un joueur.
 
-#endif // JOUEUR_H_INCLUDED
+#endif

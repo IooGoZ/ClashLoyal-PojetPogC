@@ -1,8 +1,9 @@
-#include "joueur.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "joueur.h"
+#include "unite.h"
+
 
 /*---------------------------------------------------------*/
 
@@ -23,8 +24,7 @@ t_player initPlayer(char * nom, bool playerOnTop)
 
 /*---------------------------------------------------------*/
 
-bool tourRoiDetruite(t_player player)       //  EXPLICATION
-{
+bool tourRoiDetruite(t_player player) {
     return player->tourDuRoi == NULL;
 }
 
@@ -73,7 +73,6 @@ bool getPlayerOnTop(t_player player)
 
 /*---------------------------------------------------------*/
 
-t_listeUnite getListeUnite(t_player player)
-{
+t_listeUnite getListeUnite(t_player player) {
     return player->listeUnite;
 }

@@ -1,17 +1,22 @@
-//  BOIREAU Tom
-//  DAKKOUNE Nabil
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
-
 #include "unite.h"
 #include "joueur.h"
-#include "mecaniques.h"
-#include "liste_unite.h"
+#include "mecanics.h"
+
+//  BOIREAU Tom
+//  DAKKOUNE Nabil
 
 int main()
 {
-    printf("HELLO");
+	t_listeUnite p = creerPileVide();
+	p = empiler(p, getNewUnite(tourRoi));
+	p = empiler(p, getNewUnite(tour));
+	p = empiler(p, getNewUnite(chevalier));
+	p = empiler(p, getNewUnite(archer));
+	affichePile(p);
+
+	return EXIT_SUCCESS;
 }
