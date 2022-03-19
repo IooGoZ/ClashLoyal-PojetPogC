@@ -13,11 +13,29 @@ t_player initPlayer(char * nom, bool playerOnTop) {
 
     joueur = (t_player)malloc(sizeof(struct s_player));
     joueur->nom = nom;
-    joueur->listeUnite = creerPileVide();      // => NULL ,convention ?
     joueur->nbElixir = 0;
     joueur->playerOnTop = playerOnTop;
-    joueur->tourDuRoi = NULL;
-    joueur->tourClassique = NULL;
+
+    //Initialisation des unités
+    t_listeUnite lUnites = creerPileVide();
+
+    t_unite roi = getNewUnite(tourRoi);
+    t_unite tourClassique = getNewUnite(tour);
+
+    if (playerOnTop) {
+        positionneUnite(roi, 5, 1);
+        positionneUnite(tourClassique, 5, 3);
+    } else {
+        positionneUnite(roi, 5, 15);
+        positionneUnite(tourClassique, 5, 17);
+    }
+
+    lUnites = empiler(lUnites, roi);
+    lUnites = empiler(lUnites, tourClassique);
+
+    joueur->listeUnite = lUnites;
+    joueur->tourDuRoi = roi;
+    joueur->tourClassique = tourClassique;
 
     return joueur;
 }

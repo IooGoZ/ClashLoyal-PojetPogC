@@ -12,15 +12,19 @@
 
 int main()
 {
-	printf("Salut");
-	t_listeUnite p = creerPileVide();
-	afficheEstVide(p);
-	p = empiler(p, getNewUnite(tourRoi));
-	p = empiler(p, getNewUnite(tour));
-	p = empiler(p, getNewUnite(chevalier));
-	p = empiler(p, getNewUnite(archer));
-    afficheEstVide(p);
-	affichePile(p);
+	t_player nabil = initPlayer("Nabil", true);
+	t_player tom = initPlayer("Tom", false);
+
+	t_plateauJeu plateau = allocPlateau(11,19);
+	plateau = initPlateau(plateau);
+
+	plateau = playerToPlateau(nabil, plateau);
+	plateau = playerToPlateau(tom, plateau);
+
+    affichePlateau(plateau);
+
+	affichePile(nabil->listeUnite);
+	affichePile(tom->listeUnite);
 
 	return EXIT_SUCCESS;
 }

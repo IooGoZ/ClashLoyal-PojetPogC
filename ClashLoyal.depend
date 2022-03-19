@@ -15,14 +15,14 @@
 
 1647442330 c:\users\tom\documents\github\clashloyal-pojetpogc\mecanics.h
 
-1647442433 source:c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.c
+1647683957 source:c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 	"joueur.h"
 	"unite.h"
 
-1647462016 c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.h
+1647683494 c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.h
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
@@ -33,7 +33,7 @@
 	<stdlib.h>
 	<stdbool.h>
 
-1647459928 source:c:\users\tom\documents\github\clashloyal-pojetpogc\main.c
+1647691165 source:c:\users\tom\documents\github\clashloyal-pojetpogc\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -43,22 +43,25 @@
 	"mecanics.h"
 	"affichage.h"
 
-1647459916 source:c:\users\tom\documents\github\clashloyal-pojetpogc\unite.c
+1647462769 source:c:\users\tom\documents\github\clashloyal-pojetpogc\unite.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
+	<math.h>
 	"unite.h"
 
-1647459884 source:c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.c
+1647691155 source:c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
 	"affichage.h"
 	"unite.h"
+	"joueur.h"
 
-1647459914 c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.h
+1647685869 c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.h
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
 	"unite.h"
+	"joueur.h"
 

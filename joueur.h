@@ -16,8 +16,8 @@
         int nbElixir;
         //  playerOnTop = true => il s'agit du joueur qui a la partie haute de l’écran.
         bool playerOnTop;
-        t_unite* tourDuRoi;
-        t_unite* tourClassique;
+        t_unite tourDuRoi;
+        t_unite tourClassique;
     } *t_player;
 
     /* Signatures des fonctions */
