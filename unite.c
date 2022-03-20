@@ -151,6 +151,11 @@ void setPV(t_unite unite, int newPV) {
 	unite->pointsDeVie = newPV;
 }
 
+//  Retourne le nouveau nombre de PV d’une unité.
+int minusPV(t_unite unite, int degatSubit) {
+	return getPV(unite) - degatSubit;
+}
+
 //  Retourne la vitesse d’attaque d’une unité.
 float getVitesseAttaque(t_unite unite) {
 	return unite->vitesseAttaque;

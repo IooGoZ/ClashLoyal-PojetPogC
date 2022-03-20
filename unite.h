@@ -65,6 +65,9 @@ int getPV(t_unite unite);
 //  Permet de définir le nombre de PV d’une unité.
 void setPV(t_unite unite, int newPV);
 
+//  Retourne le nouveau nombre de PV d’une unité.
+int minusPV(t_unite unite, int degatSubit):
+
 //  Retourne la vitesse d’attaque d’une unité.
 float getVitesseAttaque(t_unite unite);
 
