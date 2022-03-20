@@ -66,7 +66,7 @@ int getPV(t_unite unite);
 void setPV(t_unite unite, int newPV);
 
 //  Retourne le nouveau nombre de PV d’une unité.
-int minusPV(t_unite unite, int degatSubit):
+int minusPV(t_unite unite, int degatSubit);
 
 //  Retourne la vitesse d’attaque d’une unité.
 float getVitesseAttaque(t_unite unite);
@@ -91,6 +91,9 @@ bool getAttaque(t_unite unite);
 
 //  Définit la possibilité d’attaque d’une unité.
 void setAttaque(t_unite unite, bool stat);
+
+//  Retourne le prix (en élixir) d'une unité.
+int getPrice(t_unite unite);
 
 
 t_listeUnite creerPileVide(void);

@@ -1,11 +1,16 @@
 # depslib dependency file v1.0
-1647416395 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\mecanics.c
+1647786335 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\mecanics.c
 	"mecanics.h"
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
+	<math.h>
 
-1647416388 c:\users\nabil\documents\github\clashloyal-pojetpogc\mecanics.h
+1647787489 c:\users\nabil\documents\github\clashloyal-pojetpogc\mecanics.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"unite.h"
 
 1647426541 source:c:\users\tom\documents\github\clashloyal-pojetpogc\mecanics.c
 	"mecanics.h"
@@ -64,4 +69,54 @@
 	<stdbool.h>
 	"unite.h"
 	"joueur.h"
+
+1647704131 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\affichage.c
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	"affichage.h"
+	"unite.h"
+	"joueur.h"
+
+1647704131 c:\users\nabil\documents\github\clashloyal-pojetpogc\affichage.h
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	"unite.h"
+	"joueur.h"
+
+1647785418 c:\users\nabil\documents\github\clashloyal-pojetpogc\unite.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1647704131 c:\users\nabil\documents\github\clashloyal-pojetpogc\joueur.h
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	"unite.h"
+
+1647704131 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\joueur.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"joueur.h"
+	"unite.h"
+
+1647704131 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<time.h>
+	"unite.h"
+	"joueur.h"
+	"mecanics.h"
+	"affichage.h"
+
+1647764871 source:c:\users\nabil\documents\github\clashloyal-pojetpogc\unite.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<math.h>
+	"unite.h"
 
