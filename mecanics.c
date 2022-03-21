@@ -1,59 +1,56 @@
-#include "mecanics.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <math.h>
 
-//  Effectue l’attaque d’une unité sur une autre. (pas de vérification)
+#include "mecanics.h"
+#include "joueur.h"
+
+
+//COMBAT------------------------------------------------------------------------------------------------------
+
+//  Effectue lï¿½attaque dï¿½une unitï¿½ sur une autre. (pas de vï¿½rification)
 void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee) {
-    setPV(uniteAttaquee, minusPV(uniteAttaquee, getDegats(uniteAttaquante)));
+    minusPV(uniteAttaquee, getDegats(uniteAttaquante));
 }
 
-    //  Calcule la distance entre deux unités.
+    //  Calcule la distance entre deux unitï¿½s.
 float distance(t_unite uniteA, t_unite uniteB) {
-    return sqrt(pow(getX(uniteA) - getX(uniteB), 2) + pow(getY(uniteA) - getY(uniteB), 2));
+    return sqrtf((float)(pow(getX(uniteA) - getX(uniteB), 2) + pow(getY(uniteA) - getY(uniteB), 2)));
 }
 
-//  Vérifie si une attaque entre deux unités est possible (distance/type de cible)
+//  Vï¿½rifie si une attaque entre deux unitï¿½s est possible (distance/type de cible)
 bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee) {
-    // Cas où l'unité attaqué est hors de portée de l'attaquant à faire en premier !
+    // Cas oï¿½ l'unitï¿½ attaquï¿½ est hors de portï¿½e de l'attaquant ï¿½ faire en premier !
     if(getPortee(uniteAttaquante) < distance(uniteAttaquante,uniteAttaquee)) {
         return false;
-    }
-
-    // Initialisation où l'attaquant peut cibler solEtAir
-    bool peutAttaquer = true;
-
-    // Cas où l'attaquant peut cibler sol
-    if(getCible(uniteAttaquante) == sol) {
-        switch(getPosition(uniteAttaquee)) {
-            case sol : peutAttaquer = true; break;
-            case air : peutAttaquer = false; break;
-            //  Cas impossible : une unité est soit terrestre, soit aérienne (warning)
-            case solEtAir : peutAttaquer = false;
+    } else if(getPosition(uniteAttaquante) == sol) {
+        // Cas oï¿½ l'attaquant peut cibler sol
+        switch(getCible(uniteAttaquee)) {
+            case sol : return true;
+            case air : return false;
+            //  Cas impossible : une unitï¿½ est soit terrestre, soit aï¿½rienne (warning)
+            case solEtAir : return false;
         }
-    }
-
-    // Cas où l'attaquant peut cibler air
-    if(getCible(uniteAttaquante) == air) {
-        switch(getPosition(uniteAttaquee)) {
-            case sol : peutAttaquer = false; break;
-            case air : peutAttaquer = true; break;
-            //  Cas impossible : une unité est soit terrestre, soit aérienne (warning)
-            case solEtAir : peutAttaquer = false;
+    } else if(getPosition(uniteAttaquante) == air) {
+        // Cas oï¿½ l'attaquant peut cibler air
+        switch(getCible(uniteAttaquee)) {
+            case sol : return false;
+            case air : return true;
+            //  Cas impossible : une unitï¿½ est soit terrestre, soit aï¿½rienne (warning)
+            case solEtAir : return false;
         }
-    }
-
-    return peutAttaquer;
+    } else
+        return false;
 }
 
-//  Retourne une quantité d’élixir, compris entre 1 et 3
+
+//ECONOMIE------------------------------------------------------------------------------------------------------
+//  Retourne une quantitï¿½ dï¿½ï¿½lixir, compris entre 1 et 3
 int getRandomElixirAmount(void) {
     return 1 + (rand()%3);
 }
 
-//  Vérifie si une case est occupée avant la génération du plateau de jeu.
+//  Vï¿½rifie si une case est occupï¿½e avant la gï¿½nï¿½ration du plateau de jeu.
 bool caseOccupee(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, int x, int y) {
     for(t_listeUnite temp = unitePlayerOne; !estVide(temp) ; temp = temp->suiv) {
         if((getX(temp->pData) == x) && (getY(temp->pData) == y)) {
@@ -70,40 +67,37 @@ bool caseOccupee(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, int x
     return false;
 }
 
-//  Génère une unité aléatoire
+//  Gï¿½nï¿½re une unitï¿½ alï¿½atoire
 t_unite randomUnite(void) {
-    t_unite newUnite = NULL;
-
     switch(rand()%4) {
-        case 0 : return newUnite = creerArcher();break;
-        case 1 : return newUnite = creerChevalier();break;
-        case 2 : return newUnite = creerDragon();break;
-        case 3 : return newUnite = creerGargouille();
+        case 0 : return creerArcher();
+        case 1 : return creerChevalier();
+        case 2 : return creerDragon();
+        case 3 : return creerGargouille();
+        default : return NULL;
     }
-
-    return newUnite;
 }
 
-//  Retourne le prix (en élixir) d'une unité.
+//  Retourne le prix (en ï¿½lixir) d'une unitï¿½.
 int getPrice(t_unite unite) {
     return unite->coutEnElixir;
 }
 
-//  Permet de déclencher la tentative d’achat d’un joueur d’une unité.
-t_unite acheteUnite(int *elixirDuJoueur) {
-    t_unite newUnite = randomUnite();
+//  Permet de dï¿½clencher la tentative dï¿½achat dï¿½un joueur dï¿½une unitï¿½.
+t_unite acheteUnite(t_player player) {
 
-    if(*elixirDuJoueur < getPrice(newUnite)) {
+    t_unite newUnite = randomUnite();
+    int price = getPrice(newUnite);
+
+    if(getElixir(player) < price) {
         free(newUnite);
         return NULL;
+    } else {
+        minusElixir(player, price);
+        ajouterUnite(player, newUnite);
+        return newUnite;
     }
 
-    *elixirDuJoueur -= getPrice(newUnite);
-
-    return newUnite;
 }
 
-    //  Tri la liste des unités pouvant attaquer (à vérifier), par vitesse d’attaque.
-t_listeUnite triVitesseAttaque(t_listeUnite unites) {
-
-}
+//TEMPS-------------------------------------------------------------------------------------------------------

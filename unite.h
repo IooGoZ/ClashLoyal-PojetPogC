@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 
-/* Structure de données */
+/* Structure de donnï¿½es */
 
 typedef enum e_uniteDuJeu {tour, tourRoi, archer, chevalier, dragon, gargouille} t_uniteDuJeu;
 
@@ -17,10 +17,16 @@ typedef struct s_unite {
 	t_cible cibleAttaquable;
 	t_cible maPosition;
 	int pointsDeVie;
+
 	float vitesseAttaque;
+	float tempsAttaque;
+
 	int degats;
 	int portee;
+
 	float vitesseDeplacement;
+	float tempsDeplacement;
+
 	int posX, posY;
 	bool peutAttaquer;
 	int coutEnElixir;
@@ -33,10 +39,10 @@ typedef struct s_cell {
 
 /* Signatures de fonctions */
 
-//  Positionne une unité aux coordonnées (x,y).
+//  Positionne une unitï¿½ aux coordonnï¿½es (x,y).
 void positionneUnite(t_unite unite, int x, int y);
 
-//  Créer une unité du type « uniteType », avec tous les bons paramètres.
+//  Crï¿½er une unitï¿½ du type ï¿½ uniteType ï¿½, avec tous les bons paramï¿½tres.
 t_unite getNewUnite(t_uniteDuJeu uniteType);
 
 
@@ -53,47 +59,55 @@ t_unite creerDragon(void);
 t_unite creerGargouille(void);
 
 
-//  Retourne le type de cible d’attaque d’une unité.
+//  Retourne le type de cible dï¿½attaque dï¿½une unitï¿½.
 t_cible getCible(t_unite unite);
 
-//  Retourne le type de cible qu’est une unité.
+//  Retourne le type de cible quï¿½est une unitï¿½.
 t_cible getPosition(t_unite unite);
 
-//  Retourne le nombre de points de vie d’une unité.
+//  Retourne le nombre de points de vie dï¿½une unitï¿½.
 int getPV(t_unite unite);
 
-//  Permet de définir le nombre de PV d’une unité.
+//  Permet de dï¿½finir le nombre de PV dï¿½une unitï¿½.
 void setPV(t_unite unite, int newPV);
 
-//  Retourne le nouveau nombre de PV d’une unité.
-int minusPV(t_unite unite, int degatSubit);
+//  Retourne le nouveau nombre de PV dï¿½une unitï¿½.
+void minusPV(t_unite unite, int degatSubit);
 
-//  Retourne la vitesse d’attaque d’une unité.
+//  Retourne la vitesse dï¿½attaque dï¿½une unitï¿½.
 float getVitesseAttaque(t_unite unite);
 
-//  Retourne les dégâts que fait une unité.
+//  Retourne les dï¿½gï¿½ts que fait une unitï¿½.
 int getDegats(t_unite unite);
 
-//  Retourne la portée des attaques d’une unité.
+//  Retourne la portï¿½e des attaques dï¿½une unitï¿½.
 int getPortee(t_unite unite);
 
-//  Retourne la vitesse d’une unité.
+//  Retourne la vitesse dï¿½une unitï¿½.
 float getVitesseDeplacement(t_unite unite);
 
-//  Retourne la position en x d’une unité.
+//  Retourne la position en x dï¿½une unitï¿½.
 int getX(t_unite unite);
 
-//  Retourne la position en y d’une unité.
+//  Retourne la position en y dï¿½une unitï¿½.
 int getY(t_unite unite);
 
-//  Retourne la possibilité d’attaque d’une unité.
+//  Retourne la possibilitï¿½ dï¿½attaque dï¿½une unitï¿½.
 bool getAttaque(t_unite unite);
 
-//  Définit la possibilité d’attaque d’une unité.
+//  Dï¿½finit la possibilitï¿½ dï¿½attaque dï¿½une unitï¿½.
 void setAttaque(t_unite unite, bool stat);
 
-//  Retourne le prix (en élixir) d'une unité.
-int getPrice(t_unite unite);
+//  Retourne le temps courant d'une attaque
+float getTempsAttaque(t_unite unite);
+
+void setTempsAttaque(t_unite unite, float time);
+
+//  Retourne le temps courant d'un dÃ©placement
+float getTempsDeplacement(t_unite unite);
+
+void setTempsDeplacement(t_unite unite, float time);
+
 
 
 t_listeUnite creerPileVide(void);
@@ -106,7 +120,7 @@ t_listeUnite depiler(t_listeUnite P);
 
 t_unite tetePile(t_listeUnite P);
 
-//  Retourne la liste des unités adverses atteignables par une unité.
+//  Retourne la liste des unitï¿½s adverses atteignables par une unitï¿½.
 t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses);
 
 

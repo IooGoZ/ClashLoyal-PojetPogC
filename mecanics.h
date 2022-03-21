@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "unite.h"
+#include "joueur.h"
+
 
     //  Effectue l’attaque d’une unité sur une autre. (pas de vérification)
     void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee);
@@ -25,7 +27,7 @@
     bool caseOccupee(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, int x, int y);
 
     //  Permet de déclencher la tentative d’achat d’un joueur d’une unité.
-    t_unite acheteUnite(int *elixirDuJoueur);
+    t_unite acheteUnite(t_player player);
 
     //  Tri la liste des unités pouvant attaquer (à vérifier), par vitesse d’attaque.
     t_listeUnite triVitesseAttaque(t_listeUnite unites);
