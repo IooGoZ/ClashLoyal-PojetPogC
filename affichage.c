@@ -60,7 +60,9 @@ void affichePlateau(t_plateauJeu jeu) {
         printf("|");
         for (int x = 0; x < jeu.maxX; x++) {
             t_unite unite = jeu.plateau[x][y];
-            if (unite==NULL) {
+            if (y==9 && x != 5) {
+                printf("=====");
+            } else if (unite==NULL) {
                 printf("|   |");
             } else {
                 printf("| %c |", uniteToChar(unite->nom));

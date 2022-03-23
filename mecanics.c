@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
-#include <float.h>
 #include "mecanics.h"
 #include "joueur.h"
 #include "unite.h"
@@ -100,74 +99,10 @@ t_unite acheteUnite(t_player player) {
         ajouterUnite(player, newUnite);
         return newUnite;
     }
-
 }
 
-//TRI-------------------------------------------------------------------------------------------------------
+void positionneRandomUnite(t_unite unite, bool playerOnTop) {
 
-//  Retourne la taille de la liste.
-int lenListe(t_listeUnite l) {
-    if(estVide(l)){
-        return 0;
-    }
-    else{
-        return 1 + lenListe(l->suiv);
-    }
-}
-
-//  Retourne un tableau alloue.
-t_unite *alloueUnitesTab(int taille) {
-    t_unite *res;
-
-    res = (t_unite *)malloc(sizeof(struct s_unite) * taille);
-
-    return res;
-}
-
-//  Retourne un tableau remplit par des unites.
-t_unite *remplitUnitesTab(t_listeUnite unites, t_unite* tab) {
-    int i = 0;
-    t_listeUnite temp = unites;
-
-    while(!estVide(temp)) {
-        tab[i] = temp->pData;
-        i++;
-        temp = temp->suiv;
-    }
-
-    return tab;
-}
-//  Échange le contenu de deux cases du tableau.
-t_unite *switchIndices(t_unite *tab, int i, int j) {
-    t_unite temp = tab[i];
-
-    tab[i] = tab[j];
-    tab[j] = temp;
-
-    return tab;
-}
-
-//  Cree et renvoi un tableau d'unite trie par vitesse d'attaque.
-t_unite* triVitesseAttaque(t_listeUnite unites) {
-    int taille = lenListe(unites);
-    t_unite *tab = alloueUnitesTab(taille);
-    tab = remplitUnitesTab(unites, tab);
-
-    for(int i = 0; i < taille; i++) {
-        int indMin = 0;
-        float minVitesseAttaque = FLT_MAX;
-
-        for(int j = i; j < taille ; j++) {
-            if(getVitesseAttaque(tab[j]) < minVitesseAttaque) {
-                indMin = j;
-                minVitesseAttaque = getVitesseAttaque(tab[j]);
-            }
-        }
-
-        tab = switchIndices(tab, i, indMin);
-    }
-
-    return tab;
 }
 
 //TEMPS-------------------------------------------------------------------------------------------------------
