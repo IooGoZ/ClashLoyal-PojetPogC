@@ -39,3 +39,86 @@
 	<math.h>
 	"unite.h"
 
+1648020570 source:d:\s4\prog_c\projet_github\clashloyal-pojetpogc\affichage.c
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	"affichage.h"
+	"unite.h"
+	"joueur.h"
+
+1648032322 d:\s4\prog_c\projet_github\clashloyal-pojetpogc\affichage.h
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	"joueur.h"
+	"unite.h"
+
+1648031252 d:\s4\prog_c\projet_github\clashloyal-pojetpogc\joueur.h
+	<stdlib.h>
+	<stdio.h>
+	<stdbool.h>
+	"unite.h"
+
+1648020570 d:\s4\prog_c\projet_github\clashloyal-pojetpogc\unite.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1648027290 source:d:\s4\prog_c\projet_github\clashloyal-pojetpogc\clashloyal.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"clashloyal.h"
+	"unite.h"
+	"joueur.h"
+	"mecanics.h"
+	"affichage.h"
+
+1648029900 d:\s4\prog_c\projet_github\clashloyal-pojetpogc\clashloyal.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"unite.h"
+	"joueur.h"
+	"mecanics.h"
+	"affichage.h"
+
+1648032276 d:\s4\prog_c\projet_github\clashloyal-pojetpogc\mecanics.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"unite.h"
+	"joueur.h"
+
+1648027290 source:d:\s4\prog_c\projet_github\clashloyal-pojetpogc\joueur.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"joueur.h"
+	"unite.h"
+
+1648032164 source:d:\s4\prog_c\projet_github\clashloyal-pojetpogc\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<time.h>
+	"clashloyal.h"
+
+1648031758 source:d:\s4\prog_c\projet_github\clashloyal-pojetpogc\mecanics.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<math.h>
+	<float.h>
+	"mecanics.h"
+	"joueur.h"
+	"unite.h"
+
+1648020570 source:d:\s4\prog_c\projet_github\clashloyal-pojetpogc\unite.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<math.h>
+	"unite.h"
+

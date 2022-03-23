@@ -54,5 +54,4 @@
     //  Retourne la liste des unités d’un joueur.
     t_listeUnite getListeUnite(t_player player);
 
-
 #endif

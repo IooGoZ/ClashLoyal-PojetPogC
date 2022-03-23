@@ -29,7 +29,7 @@
     //  Permet de déclencher la tentative d’achat d’un joueur d’une unité.
     t_unite acheteUnite(t_player player);
 
-    //  FONCTIONS DE MANIPULATION DE TRI
+        //  FONCTIONS DE MANIPULATION DE TRI
 
     //  Retourne la taille de la liste.
     int lenListe(t_listeUnite l);

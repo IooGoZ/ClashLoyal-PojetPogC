@@ -75,7 +75,6 @@ void affichePlateau(t_plateauJeu jeu) {
 }
 
 
-
 //Debug-----------------------------------------------
 
 void affichePile(t_listeUnite P) {
@@ -91,4 +90,11 @@ void afficheEstVide(t_listeUnite P) {
 	} else {
 		printf("Ma pile d'unite n'est pas vide.\n");
 	}
+}
+
+void afficheUniteTab(t_unite *tab, int taille) {
+    for(int i = 0; i < taille; i++)
+    {
+        printf("vitesse attaque : %f\n",getVitesseAttaque(tab[i]));
+    }
 }

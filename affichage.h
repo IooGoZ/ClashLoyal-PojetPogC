@@ -37,6 +37,6 @@ void affichePile(t_listeUnite P);
 
 void afficheEstVide(t_listeUnite P);
 
-
+ void afficheUniteTab(t_unite *tab, int taille);
 
 #endif
