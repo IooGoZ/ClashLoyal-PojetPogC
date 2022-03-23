@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "unite.h"
 #include "joueur.h"
+#include "unite.h"
+
 
 //TYPES-------------------------
 typedef struct s_plateauJeu {

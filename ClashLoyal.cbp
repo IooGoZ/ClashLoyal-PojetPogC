@@ -54,6 +54,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="unite.h" />
-		<Extensions />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

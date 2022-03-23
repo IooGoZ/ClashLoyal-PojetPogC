@@ -1,3 +1,6 @@
+#ifndef CLASHLOYAL_H
+#define CLASHLOYAL_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -30,3 +33,5 @@ void phaseElixir(t_jeuStats stats);
 void phaseAffichage(t_jeuStats stats);
 
 void phaseFin(t_jeuStats stats);
+
+#endif

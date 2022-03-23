@@ -41,7 +41,7 @@
     t_unite *remplitUnitesTab(t_listeUnite unites, t_unite* tab);
 
     //  Échange le contenu de deux cases du tableau.
-    t_unite *switchIndices(t_unite *tab, int i, int j)
+    t_unite *switchIndices(t_unite *tab, int i, int j);
 
     //  Tri la liste des unités pouvant attaquer (à vérifier), par vitesse d’attaque.
     t_unite *triVitesseAttaque(t_listeUnite unites);
