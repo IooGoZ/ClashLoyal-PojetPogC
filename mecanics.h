@@ -29,7 +29,21 @@
     //  Permet de déclencher la tentative d’achat d’un joueur d’une unité.
     t_unite acheteUnite(t_player player);
 
+    //  FONCTIONS DE MANIPULATION DE TRI
+
+    //  Retourne la taille de la liste.
+    int lenListe(t_listeUnite l);
+
+    //  Retourne un tableau alloue.
+    t_unite *alloueUnitesTab(int taille);
+
+    //  Retourne un tableau remplit par des unites.
+    t_unite *remplitUnitesTab(t_listeUnite unites, t_unite* tab);
+
+    //  Échange le contenu de deux cases du tableau.
+    t_unite *switchIndices(t_unite *tab, int i, int j)
+
     //  Tri la liste des unités pouvant attaquer (à vérifier), par vitesse d’attaque.
-    t_listeUnite triVitesseAttaque(t_listeUnite unites);
+    t_unite *triVitesseAttaque(t_listeUnite unites);
 
 #endif

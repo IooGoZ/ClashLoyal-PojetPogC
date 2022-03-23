@@ -10,6 +10,11 @@
 
 int main()
 {
+<<<<<<< Updated upstream
+=======
+
+    srand (time (NULL));
+>>>>>>> Stashed changes
 
 	t_jeuStats stats =  phaseInitialisation();
 
@@ -29,7 +34,14 @@ int main()
 		}
 	}
 
+<<<<<<< Updated upstream
 	phaseFin(stats);
+=======
+
+	generateAndPrintPlateau(nabil, tom);
+>>>>>>> Stashed changes
 
 	return EXIT_SUCCESS;
+
+
 }

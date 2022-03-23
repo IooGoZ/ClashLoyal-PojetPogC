@@ -4,6 +4,8 @@
 
 #include "mecanics.h"
 #include "joueur.h"
+#include <math.h>
+#include <float.h>
 
 
 //COMBAT------------------------------------------------------------------------------------------------------
@@ -23,24 +25,24 @@ bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee) {
     // Cas o� l'unit� attaqu� est hors de port�e de l'attaquant � faire en premier !
     if(getPortee(uniteAttaquante) < distance(uniteAttaquante,uniteAttaquee)) {
         return false;
-    } else if(getPosition(uniteAttaquante) == sol) {
+    } else if(getCible(uniteAttaquante) == sol) {
         // Cas o� l'attaquant peut cibler sol
-        switch(getCible(uniteAttaquee)) {
+        switch(getPosition(uniteAttaquee)) {
             case sol : return true;
             case air : return false;
             //  Cas impossible : une unit� est soit terrestre, soit a�rienne (warning)
             case solEtAir : return false;
         }
-    } else if(getPosition(uniteAttaquante) == air) {
+    } else if(getCible(uniteAttaquante) == air) {
         // Cas o� l'attaquant peut cibler air
-        switch(getCible(uniteAttaquee)) {
+        switch(getPosition(uniteAttaquee)) {
             case sol : return false;
             case air : return true;
             //  Cas impossible : une unit� est soit terrestre, soit a�rienne (warning)
             case solEtAir : return false;
         }
     } else
-        return false;
+        return true;
 }
 
 
@@ -98,6 +100,73 @@ t_unite acheteUnite(t_player player) {
         return newUnite;
     }
 
+}
+
+//TRI-------------------------------------------------------------------------------------------------------
+
+//  Retourne la taille de la liste.
+int lenListe(t_listeUnite l) {
+    if(estVide(l)){
+        return 0;
+    }
+    else{
+        return 1 + lenListe(l->suiv);
+    }
+}
+
+//  Retourne un tableau alloue.
+t_unite *alloueUnitesTab(int taille) {
+    t_unite *res;
+
+    res = (t_unite *)malloc(sizeof(struct s_unite) * taille);
+
+    return res;
+}
+
+//  Retourne un tableau remplit par des unites.
+t_unite *remplitUnitesTab(t_listeUnite unites, t_unite* tab) {
+    int i = 0;
+    t_listeUnite temp = unites;
+
+    while(!estVide(temp)) {
+        tab[i] = temp->pData;
+        i++;
+        temp = temp->suiv;
+    }
+
+    return tab;
+}
+//  Échange le contenu de deux cases du tableau.
+t_unite *switchIndices(t_unite *tab, int i, int j) {
+    t_unite temp = tab[i];
+
+    tab[i] = tab[j];
+    tab[j] = temp;
+
+    return tab;
+}
+
+//  Cree et renvoi un tableau d'unite trie par vitesse d'attaque.
+t_unite* triVitesseAttaque(t_listeUnite unites) {
+    int taille = lenListe(unites);
+    t_unite *tab = alloueUnitesTab(taille);
+    tab = remplitUnitesTab(unites, tab);
+
+    for(int i = 0; i < taille; i++) {
+        int indMin = 0;
+        float minVitesseAttaque = FLT_MAX;
+
+        for(int j = i; j < taille ; j++) {
+            if(getVitesseAttaque(tab[j]) < minVitesseAttaque) {
+                indMin = j;
+                minVitesseAttaque = getVitesseAttaque(tab[j]);
+            }
+        }
+
+        tab = switchIndices(tab, i, indMin);
+    }
+
+    return tab;
 }
 
 //TEMPS-------------------------------------------------------------------------------------------------------
