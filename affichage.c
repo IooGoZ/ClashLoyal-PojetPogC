@@ -42,7 +42,7 @@ t_plateauJeu playerToPlateau(t_player player,t_plateauJeu jeu) {
         if (jeu.plateau[unite->posX][unite->posY]!=NULL) {
             fprintf(stderr, "Erreur playerToPlateau : La case n'est pas vide.\n");
             printf("Position X : %d\nPosition Y : %d\nCase contenue : %c\nCase a placer : %c\n", unite->posX, unite->posY, uniteToChar(jeu.plateau[unite->posX][unite->posY]->nom),uniteToChar(unite->nom));
-        } else {
+            } else {
             jeu.plateau[unite->posX][unite->posY] = unite;
         }
     }

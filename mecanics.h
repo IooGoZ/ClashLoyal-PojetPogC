@@ -26,7 +26,7 @@
     //  Permet de déclencher la tentative d’achat d’un joueur d’une unité.
     t_unite acheteUnite(t_player player);
 
-        //  FONCTIONS DE MANIPULATION DE TRI
+    void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, t_unite unite, bool playerOnTop);
 
 
 

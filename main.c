@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include "clashloyal.h"
-#define TEMPS_PAR_TOUR 1000
+#define TEMPS_PAR_TOUR 500
 
 //  BOIREAU Tom
 //  DAKKOUNE Nabil

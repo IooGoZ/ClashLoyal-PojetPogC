@@ -5,6 +5,7 @@
 #include "mecanics.h"
 #include "joueur.h"
 #include "unite.h"
+#include "utils.h"
 
 
 
@@ -101,8 +102,21 @@ t_unite acheteUnite(t_player player) {
     }
 }
 
-void positionneRandomUnite(t_unite unite, bool playerOnTop) {
 
+void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, t_unite unite, bool playerOnTop) {
+    int x =-1, y=-1, minX = 0, maxX = 11, minY, maxY;
+    if (playerOnTop) {
+        minY = 0;
+        maxY = 9;
+    } else {
+        minY = 10;
+        maxY = 19;
+    }
+    do {
+        x = getRandomInt(minX, maxX);
+        y = getRandomInt(minY, maxY);
+    } while(caseOccupee(unitePlayerOne, unitePlayerTwo, x, y));
+    positionneUnite(unite, x, y);
 }
 
 //TEMPS-------------------------------------------------------------------------------------------------------

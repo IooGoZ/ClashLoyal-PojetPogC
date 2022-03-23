@@ -38,8 +38,13 @@ void phaseDeplacement(t_jeuStats stats) {
 
 void phaseCreation(t_jeuStats stats) {
     t_unite uniteOne = acheteUnite(stats->playerOne);
+    if (uniteOne != NULL)
+        positionneRandomUnite(stats->playerOne->listeUnite, stats->playerTwo->listeUnite, uniteOne, stats->playerOne->playerOnTop);
+
     t_unite uniteTwo = acheteUnite(stats->playerTwo);
 
+    if (uniteTwo != NULL)
+        positionneRandomUnite(stats->playerOne->listeUnite, stats->playerTwo->listeUnite, uniteTwo, stats->playerTwo->playerOnTop);
 }
 
 void phaseElixir(t_jeuStats stats) {
@@ -48,14 +53,17 @@ void phaseElixir(t_jeuStats stats) {
 }
 
 void phaseAffichage(t_jeuStats stats) {
+
 	t_plateauJeu plateau = allocPlateau(11,19);
 	plateau = initPlateau(plateau);
 
-	plateau = playerToPlateau(stats->playerOne, plateau);
 	plateau = playerToPlateau(stats->playerTwo, plateau);
+	plateau = playerToPlateau(stats->playerOne, plateau);
+
+
 
 	affichePlateau(plateau);
-	printf("\nElixir de %s : %d", getNom(stats->playerOne), getElixir(stats->playerOne));
+	printf("Elixir de %s : %d", getNom(stats->playerOne), getElixir(stats->playerOne));
 	printf("\nElixir de %s : %d\n\n\n", getNom(stats->playerTwo), getElixir(stats->playerTwo));
 }
 

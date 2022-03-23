@@ -22,6 +22,6 @@
     //  Tri la liste des unités pouvant attaquer (à vérifier), par vitesse d’attaque.
     t_unite *triVitesseAttaque(t_listeUnite unites);
 
-    int random_int(int min, int max);
+    int getRandomInt(int min, int max);
 
 #endif // UTILS_H_INCLUDED

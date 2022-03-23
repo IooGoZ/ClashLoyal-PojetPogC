@@ -4,6 +4,9 @@
 #include <math.h>
 #include "unite.h"
 
+#define DEFAULT_POS_X -1
+#define DEFAULT_POS_Y -1
+
 //  Positionne une unit� aux coordonn�es (x,y).
 void positionneUnite(t_unite unite, int x, int y) {
     unite->posX = x;
@@ -36,6 +39,9 @@ t_unite allocUnite() {
 t_unite creerTourClassique() {
 	t_unite res = allocUnite();
 
+	res->posX = DEFAULT_POS_X;
+	res->posY = DEFAULT_POS_Y;
+
 	res->nom = tour;
 	res->cibleAttaquable = solEtAir;
 	res->maPosition = sol;
@@ -51,6 +57,9 @@ t_unite creerTourClassique() {
 
 t_unite creerTourRoi() {
 	t_unite res = allocUnite();
+
+	res->posX = DEFAULT_POS_X;
+	res->posY = DEFAULT_POS_Y;
 
 	res->nom = tourRoi;
 	res->cibleAttaquable = solEtAir;
@@ -68,6 +77,9 @@ t_unite creerTourRoi() {
 t_unite creerChevalier() {
 	t_unite res = allocUnite();
 
+	res->posX = DEFAULT_POS_X;
+	res->posY = DEFAULT_POS_Y;
+
 	res->nom = chevalier;
 	res->cibleAttaquable = sol;
 	res->maPosition = sol;
@@ -83,6 +95,9 @@ t_unite creerChevalier() {
 
 t_unite creerArcher() {
 	t_unite res = allocUnite();
+
+	res->posX = DEFAULT_POS_X;
+	res->posY = DEFAULT_POS_Y;
 
 	res->nom = archer;
 	res->cibleAttaquable = solEtAir;
@@ -100,6 +115,9 @@ t_unite creerArcher() {
 t_unite creerDragon() {
 	t_unite res = allocUnite();
 
+	res->posX = DEFAULT_POS_X;
+	res->posY = DEFAULT_POS_Y;
+
 	res->nom = dragon;
 	res->cibleAttaquable = solEtAir;
 	res->maPosition = air;
@@ -115,6 +133,9 @@ t_unite creerDragon() {
 
 t_unite creerGargouille() {
 	t_unite res = allocUnite();
+
+	res->posX = DEFAULT_POS_X;
+	res->posY = DEFAULT_POS_Y;
 
 	res->nom = gargouille;
 	res->cibleAttaquable = solEtAir;

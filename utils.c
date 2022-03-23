@@ -74,6 +74,6 @@ t_unite* triVitesseAttaque(t_listeUnite unites) {
 }
 
 //Random Int--------------------------------------
-int random_int(int min, int max) {
-	return (min + rand() % (max-min) + 1);
+int getRandomInt(int min, int max) {
+	return (min + rand() % (max-min));
 }
