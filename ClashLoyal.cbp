@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="affichage.h" />
+		<Unit filename="clashloyal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="clashloyal.h" />
 		<Unit filename="joueur.c">
 			<Option compilerVar="CC" />
 		</Unit>

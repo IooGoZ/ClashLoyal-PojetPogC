@@ -26,8 +26,8 @@ t_player initPlayer(char * nom, bool playerOnTop) {
         positionneUnite(roi, 5, 1);
         positionneUnite(tourClassique, 5, 3);
     } else {
-        positionneUnite(roi, 5, 15);
-        positionneUnite(tourClassique, 5, 17);
+        positionneUnite(roi, 5, 17);
+        positionneUnite(tourClassique, 5, 15);
     }
 
     lUnites = empiler(lUnites, roi);
@@ -53,6 +53,10 @@ bool tourRoiDetruite(t_player player) {
 //  Retourne la quantité d’élixir d’un joueur.
 int getElixir(t_player player) {
     return player->nbElixir;
+}
+
+char* getNom(t_player player) {
+    return player->nom;
 }
 
 /*---------------------------------------------------------*/

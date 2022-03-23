@@ -2,45 +2,34 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
-#include "unite.h"
-#include "joueur.h"
-#include "mecanics.h"
-#include "affichage.h"
+#include "clashloyal.h"
+#define TEMPS_PAR_TOUR 1000
 
 //  BOIREAU Tom
 //  DAKKOUNE Nabil
 
 int main()
 {
-    srand (time (NULL));
 
+	t_jeuStats stats =  phaseInitialisation();
 
-	t_player nabil = initPlayer("Nabil", true);
-	t_player tom = initPlayer("Tom", false);
+	clock_t current_time = clock();
 
-    addElixir(nabil, 10);
-    addElixir(tom, 10);
+	while (!jeuEstTermine(stats)) {
+		unsigned long millis = (clock() -  current_time) * 1000 / CLOCKS_PER_SEC;
+		if (millis>=TEMPS_PAR_TOUR) {
 
-    t_unite unite_nabil = acheteUnite(nabil);
+			phaseCombat(stats);
+			phaseDeplacement(stats);
+			phaseCreation(stats);
+			phaseElixir(stats);
+			phaseAffichage(stats);
 
-    if (unite_nabil != NULL) {
-        positionneUnite(unite_nabil, 3, 5);
-    } else printf("Unité null");
+			current_time = clock();
+		}
+	}
 
-
-
-	generateAndPrintPlateau(nabil, tom);
+	phaseFin(stats);
 
 	return EXIT_SUCCESS;
-}
-
-
-void generateAndPrintPlateau(t_player player1, t_player player2) {
-    t_plateauJeu plateau = allocPlateau(11,19);
-	plateau = initPlateau(plateau);
-
-	plateau = playerToPlateau(player1, plateau);
-	plateau = playerToPlateau(player2, plateau);
-
-    affichePlateau(plateau);
 }

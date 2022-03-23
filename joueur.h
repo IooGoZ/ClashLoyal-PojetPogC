@@ -31,6 +31,8 @@
     //  Retourne la quantité d’élixir d’un joueur.
     int getElixir(t_player player);
 
+    char* getNom(t_player player);
+
     //  Ajoute une quantité d’élixir au joueur.
     void addElixir(t_player player, int amount);
 
