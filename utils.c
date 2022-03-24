@@ -76,7 +76,7 @@ t_unite* triVitesseAttaque(t_listeUnite unites) {
 }
 
 //  Concatene deux listes d'unites en un tableau trié par vitesse d'attaque
-t_tabUnite concatToSortedTab(t_listeUnite unitesOne, t_listeUnite unitesTwo) {
+t_tabUnite concatToTab(t_listeUnite unitesOne, t_listeUnite unitesTwo) {
     int len = lenListe(unitesOne) + lenListe(unitesTwo);
     t_unite *tab = alloueUnitesTab(len);
     int i = 0;
@@ -89,11 +89,19 @@ t_tabUnite concatToSortedTab(t_listeUnite unitesOne, t_listeUnite unitesTwo) {
         i++;
     }
 
-    tab = triTableauVitesseAttaque(tab, len);
-
     t_tabUnite tabUnite = (t_tabUnite) malloc(sizeof(struct s_tabUnite));
     tabUnite->tab = tab;
     tabUnite->taille = len;
+    return tabUnite;
+}
+
+//  Concatene deux listes d'unites en un tableau trié par vitesse d'attaque
+t_tabUnite concatToSortedTab(t_listeUnite unitesOne, t_listeUnite unitesTwo) {
+
+    t_tabUnite tabUnite = concatToTab(unitesOne, unitesTwo);
+
+    tabUnite->tab  = triTableauVitesseAttaque(tabUnite->tab , tabUnite->taille);
+
     return tabUnite;
 }
 

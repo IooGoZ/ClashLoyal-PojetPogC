@@ -88,7 +88,7 @@ t_unite creerChevalier() {
 	res->degats = 250;
 	res->portee = 1;
 	res->vitesseDeplacement = 2.0;
-	res->coutEnElixir = 0;
+	res->coutEnElixir = 4;
 
 	return res;
 }
@@ -240,6 +240,10 @@ bool getPlayerUnite(t_unite unite) {
 
 void setPlayerUnite(t_unite unite, bool playerOnTop) {
     unite->playerOnTop = playerOnTop;
+}
+
+t_uniteDuJeu getType(t_unite unite) {
+    return unite->nom;
 }
 
 //Piles--------------------------------------------------------------

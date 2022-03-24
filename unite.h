@@ -119,6 +119,8 @@ t_listeUnite creerPileVide(void);
 
 bool estVide(t_listeUnite P);
 
+t_uniteDuJeu getType(t_unite unite);
+
 t_listeUnite empiler(t_listeUnite P, t_unite unite);
 
 t_listeUnite depiler(t_listeUnite P);

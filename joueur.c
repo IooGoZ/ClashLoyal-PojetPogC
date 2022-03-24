@@ -22,6 +22,9 @@ t_player initPlayer(char * nom, bool playerOnTop) {
     t_unite roi = getNewUnite(tourRoi);
     t_unite tourClassique = getNewUnite(tour);
 
+    setPlayerUnite(roi, playerOnTop);
+    setPlayerUnite(tourClassique, playerOnTop);
+
     if (playerOnTop) {
         positionneUnite(roi, 5, 1);
         positionneUnite(tourClassique, 5, 3);
@@ -32,6 +35,7 @@ t_player initPlayer(char * nom, bool playerOnTop) {
 
     lUnites = empiler(lUnites, roi);
     lUnites = empiler(lUnites, tourClassique);
+
 
     joueur->listeUnite = lUnites;
     joueur->tourDuRoi = roi;
@@ -84,6 +88,11 @@ bool tourClassiqueDetruite(t_player player) {
 
 //  Supprime une unité à un joueur.
 void supprimerUnite(t_player player, t_unite uniteDetruite) {
+    if (getType(uniteDetruite) == tourRoi) {
+        player->tourDuRoi == NULL;
+    } else if (getType(uniteDetruite) == tour) {
+        player->tourClassique == NULL;
+    }
     player->listeUnite = supprimer(player->listeUnite, uniteDetruite);
 }
 

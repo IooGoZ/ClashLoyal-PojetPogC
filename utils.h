@@ -30,6 +30,8 @@ typedef struct s_tabUnite {
     //Retourne un int compris entre min et max
     int getRandomInt(int min, int max);
 
+    t_tabUnite concatToTab(t_listeUnite unitesOne, t_listeUnite unitesTwo);
+
     //  Concatene deux listes d'unites en un tableau trié par vitesse d'attaque
     t_tabUnite concatToSortedTab(t_listeUnite unitesOne, t_listeUnite unitesTwo);
 

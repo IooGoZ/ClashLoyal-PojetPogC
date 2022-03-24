@@ -44,7 +44,6 @@ t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses, bool tour
     t_listeUnite res = creerPileVide();
     for (t_listeUnite i = unitesAdverses; !estVide(i); i = i->suiv) {
         if (checkAttaque(unite, i->pData, tourClasssiqueDetruite)) {
-                printf("1");
             res = empiler(res, i->pData);
         }
     }
@@ -92,17 +91,19 @@ int getPrice(t_unite unite) {
 
 //  Permet de d�clencher la tentative d�achat d�un joueur d�une unit�.
 t_unite acheteUnite(t_player player) {
-    t_unite newUnite = randomUnite();
-    int price = getPrice(newUnite);
-
-    if(getElixir(player) < price) {
-        free(newUnite);
-        return NULL;
-    } else {
+    if (getElixir(player) >= 1 && rand()%3==1) {
+        t_unite newUnite = randomUnite();
+        int price = getPrice(newUnite);
+        while(getElixir(player) < price) {
+            free(newUnite);
+            newUnite = randomUnite();
+            price = getPrice(newUnite);
+        }
         minusElixir(player, price);
         ajouterUnite(player, newUnite);
         return newUnite;
-    }
+    } else
+        return NULL;
 }
 
 
@@ -122,4 +123,44 @@ void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayer
     positionneUnite(unite, x, y);
 }
 
-//TEMPS-------------------------------------------------------------------------------------------------------
+//DEPLACEMENT-------------------------------------------------------------------------------------------------
+
+int * getNextPosition(t_unite unite) {
+    int x = getX(unite), y = getY(unite);
+
+        if (getPlayerUnite(unite)) {
+            if (y < 4) {
+                if (x==5)
+                    x++;
+                else
+                    y++;
+            } else {
+                if (x < 5)
+                    x++;
+                else if (x > 5)
+                    x--;
+                else
+                    y++;
+            }
+        } else {
+            if (y > 14) {
+                if (x == 5)
+                    x--;
+                else
+                    y--;
+            } else {
+                if (x < 5)
+                    x++;
+                else if (x > 5)
+                    x--;
+                else
+                    y--;
+            }
+        }
+
+
+    int* res = (int *) malloc(sizeof(int)*2);
+    res[0] = x;
+    res[1] = y;
+    return res;
+}
