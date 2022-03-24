@@ -12,8 +12,12 @@
 //COMBAT------------------------------------------------------------------------------------------------------
 
 //  Effectue l�attaque d�une unit� sur une autre. (pas de v�rification)
-void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee) {
+void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee, t_player joueurAttaquee) {
+    setAttaque(uniteAttaquante, false);
     minusPV(uniteAttaquee, getDegats(uniteAttaquante));
+    if (getPV(uniteAttaquee)<=0) {
+        supprimerUnite(joueurAttaquee, uniteAttaquee);
+    }
 }
 
     //  Calcule la distance entre deux unit�s.
@@ -21,31 +25,31 @@ float distance(t_unite uniteA, t_unite uniteB) {
     return sqrtf((float)(pow(getX(uniteA) - getX(uniteB), 2) + pow(getY(uniteA) - getY(uniteB), 2)));
 }
 
-//  V�rifie si une attaque entre deux unit�s est possible (distance/type de cible)
-bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee) {
-    // Cas o� l'unit� attaqu� est hors de port�e de l'attaquant � faire en premier !
-    if(getPortee(uniteAttaquante) < distance(uniteAttaquante,uniteAttaquee)) {
-        return false;
-    } else if(getCible(uniteAttaquante) == sol) {
-        // Cas o� l'attaquant peut cibler sol
-        switch(getPosition(uniteAttaquee)) {
-            case sol : return true;
-            case air : return false;
-            //  Cas impossible : une unit� est soit terrestre, soit a�rienne (warning)
-            case solEtAir : return false;
+//  V�rifie si une attaque entre deux unit�s est possible (distance/type de cible/possibilité d'attaque)
+bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee, bool tourClasssiqueDetruite) {
+    if (getAttaque(uniteAttaquante) && distance(uniteAttaquante, uniteAttaquee) <= getPortee(uniteAttaquante)) {
+        if (getNom(uniteAttaquee)==tourRoi) {
+            return tourClasssiqueDetruite;
         }
-    } else if(getCible(uniteAttaquante) == air) {
-        // Cas o� l'attaquant peut cibler air
-        switch(getPosition(uniteAttaquee)) {
-            case sol : return false;
-            case air : return true;
-            //  Cas impossible : une unit� est soit terrestre, soit a�rienne (warning)
-            case solEtAir : return false;
-        }
+        else if (getCible(uniteAttaquante) == solEtAir)
+            return true;
+        else
+            return (getCible(uniteAttaquante) == getPosition(uniteAttaquee));
     } else
-        return true;
+        return false;
 }
 
+//  Retourne la liste des unit�s adverses atteignables par une unit�.
+t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses, bool tourClasssiqueDetruite) {
+    t_listeUnite res = creerPileVide();
+    for (t_listeUnite i = unitesAdverses; !estVide(i); i = i->suiv) {
+        if (checkAttaque(unite, i->pData, tourClasssiqueDetruite)) {
+                printf("1");
+            res = empiler(res, i->pData);
+        }
+    }
+	return res;
+}
 
 //ECONOMIE------------------------------------------------------------------------------------------------------
 //  Retourne une quantit� d��lixir, compris entre 1 et 3
@@ -88,7 +92,6 @@ int getPrice(t_unite unite) {
 
 //  Permet de d�clencher la tentative d�achat d�un joueur d�une unit�.
 t_unite acheteUnite(t_player player) {
-
     t_unite newUnite = randomUnite();
     int price = getPrice(newUnite);
 

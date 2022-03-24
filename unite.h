@@ -125,8 +125,7 @@ t_listeUnite depiler(t_listeUnite P);
 
 t_unite tetePile(t_listeUnite P);
 
-//  Retourne la liste des unit�s adverses atteignables par une unit�.
-t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses);
+
 
 
 /* Signatures fonctions utilitaires */

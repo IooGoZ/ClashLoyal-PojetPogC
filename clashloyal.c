@@ -32,7 +32,27 @@ t_jeuStats phaseInitialisation() {
 void phaseCombat(t_jeuStats stats) {
     t_tabUnite concatTab = concatToSortedTab(stats->playerOne->listeUnite, stats->playerTwo->listeUnite);
 
-    afficheUniteTab(concatTab->tab, concatTab->taille);
+    for (int i = 0; i < concatTab->taille; i++) {
+        t_unite current_unite = concatTab->tab[i];
+        t_listeUnite uniteAdverse;
+        t_player playerAttaquee;
+        if (!getPlayerUnite(current_unite)) {
+            uniteAdverse = stats->playerOne->listeUnite;
+            playerAttaquee = stats->playerOne;
+        } else {
+            uniteAdverse = stats->playerTwo->listeUnite;
+            playerAttaquee = stats->playerTwo;
+        }
+        t_listeUnite unitesAPortee = quiEstAPortee(current_unite,uniteAdverse, tourClassiqueDetruite(playerAttaquee));
+        if (!estVide(unitesAPortee)) {
+            attaque(current_unite, unitesAPortee->pData, playerAttaquee);
+        }
+    }
+
+    for (int i = 0; i < concatTab->taille; i++) {
+        t_unite current_unite = concatTab->tab[i];
+        setAttaque(current_unite, true);
+    }
 }
 
 void phaseDeplacement(t_jeuStats stats) {

@@ -297,15 +297,3 @@ t_listeUnite supprimer(t_listeUnite P, t_unite unite) {
 t_unite tetePile(t_listeUnite P) {
 	return P->pData;
 }
-
-//  Retourne la liste des unit�s adverses atteignables par une unit�.
-t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses) {
-    t_listeUnite res = creerPileVide();
-    for (t_listeUnite i = unitesAdverses; !estVide(i); i = i->suiv) {
-        float distance = sqrtf((float)(pow(((i->pData->posX)-(unite->posX)), 2)+pow(((i->pData->posY)-(unite->posY)), 2)));
-        if (unite->portee >= distance) {
-            res = empiler(res, i->pData);
-        }
-    }
-	return res;
-}

@@ -8,26 +8,27 @@
 #include "joueur.h"
 
 
-    //  Effectue l’attaque d’une unité sur une autre. (pas de vérification)
-    void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee);
+    //  Effectue lâ€™attaque dâ€™une unitÃ© sur une autre. (pas de vÃ©rification)
+    void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee, t_player joueurAttaquee);
 
-    //  Vérifie si une attaque entre deux unités est possible (distance/type de cible)
-    bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee);
+    //  VÃ©rifie si une attaque entre deux unitÃ©s est possible (distance/type de cible)
+    bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee, bool tourClasssiqueDetruite);
 
-    //  Calcule la distance entre deux unités.
+    //  Calcule la distance entre deux unitÃ©s.
     float distance(t_unite uniteA, t_unite uniteB);
 
-    //  Retourne une quantité d’élixir, compris entre 1 et 3
+    //  Retourne une quantitÃ© dâ€™Ã©lixir, compris entre 1 et 3
     int getRandomElixirAmount(void);
 
-    //  Vérifie si une case est occupée avant la génération du plateau de jeu.
+    //  VÃ©rifie si une case est occupÃ©e avant la gÃ©nÃ©ration du plateau de jeu.
     bool caseOccupee(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, int x, int y);
 
-    //  Permet de déclencher la tentative d’achat d’un joueur d’une unité.
+    //  Permet de dÃ©clencher la tentative dâ€™achat dâ€™un joueur dâ€™une unitÃ©.
     t_unite acheteUnite(t_player player);
 
     void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, t_unite unite, bool playerOnTop);
 
-
+    //  Retourne la liste des unitï¿½s adverses atteignables par une unitï¿½.
+    t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses, bool tourClasssiqueDetruite);
 
 #endif
