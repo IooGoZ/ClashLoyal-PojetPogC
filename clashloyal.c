@@ -6,6 +6,7 @@
 #include "joueur.h"
 #include "mecanics.h"
 #include "affichage.h"
+#include "utils.h"
 
 t_jeuStats convertToJeuStat(t_player playerOne, t_player playerTwo) {
 	t_jeuStats res = (t_jeuStats) malloc(sizeof(struct s_jeuStats));
@@ -29,7 +30,9 @@ t_jeuStats phaseInitialisation() {
 }
 
 void phaseCombat(t_jeuStats stats) {
+    t_tabUnite concatTab = concatToSortedTab(stats->playerOne->listeUnite, stats->playerTwo->listeUnite);
 
+    afficheUniteTab(concatTab->tab, concatTab->taille);
 }
 
 void phaseDeplacement(t_jeuStats stats) {

@@ -91,6 +91,7 @@ void supprimerUnite(t_player player, t_unite uniteDetruite) {
 
 //  Ajoute une unité à un joueur.
 void ajouterUnite(t_player player, t_unite nouvelleUnite) {
+    setPlayerUnite(nouvelleUnite, getPlayerOnTop(player));
     player->listeUnite = empiler(player->listeUnite, nouvelleUnite);
 }
 

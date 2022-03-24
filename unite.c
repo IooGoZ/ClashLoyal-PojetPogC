@@ -234,6 +234,14 @@ void setTempsDeplacement(t_unite unite, float time) {
 	unite->tempsDeplacement = time;
 }
 
+bool getPlayerUnite(t_unite unite) {
+    return unite->playerOnTop;
+}
+
+void setPlayerUnite(t_unite unite, bool playerOnTop) {
+    unite->playerOnTop = playerOnTop;
+}
+
 //Piles--------------------------------------------------------------
 
 t_listeUnite creerPileVide() {

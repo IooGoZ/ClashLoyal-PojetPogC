@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1648066586 source:c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.c
-	<stdlib.h>
+1648116704 source:c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.c
 	<stdio.h>
+	<stdlib.h>
 	<stdbool.h>
 	"affichage.h"
 	"unite.h"
@@ -14,7 +14,7 @@
 	"joueur.h"
 	"unite.h"
 
-1647892783 c:\users\tom\documents\github\clashloyal-pojetpogc\unite.h
+1648116632 c:\users\tom\documents\github\clashloyal-pojetpogc\unite.h
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -25,14 +25,14 @@
 	<stdbool.h>
 	"unite.h"
 
-1648026829 source:c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.c
+1648116962 source:c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 	"joueur.h"
 	"unite.h"
 
-1648065458 source:c:\users\tom\documents\github\clashloyal-pojetpogc\unite.c
+1648116610 source:c:\users\tom\documents\github\clashloyal-pojetpogc\unite.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -122,7 +122,7 @@
 	<math.h>
 	"unite.h"
 
-1648066773 source:c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.c
+1648120825 source:c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -131,6 +131,7 @@
 	"joueur.h"
 	"mecanics.h"
 	"affichage.h"
+	"utils.h"
 
 1648028728 c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.h
 	<stdio.h>
@@ -165,7 +166,7 @@
 	"unite.h"
 	"utils.h"
 
-1648064142 source:c:\users\tom\documents\github\clashloyal-pojetpogc\utils.c
+1648120977 source:c:\users\tom\documents\github\clashloyal-pojetpogc\utils.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -174,7 +175,7 @@
 	"joueur.h"
 	"utils.h"
 
-1648059993 c:\users\tom\documents\github\clashloyal-pojetpogc\utils.h
+1648119434 c:\users\tom\documents\github\clashloyal-pojetpogc\utils.h
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>

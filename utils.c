@@ -30,12 +30,11 @@ t_unite *alloueUnitesTab(int taille) {
 //  Retourne un tableau remplit par des unites.
 t_unite *remplitUnitesTab(t_listeUnite unites, t_unite* tab) {
     int i = 0;
-    t_listeUnite temp = unites;
 
-    while(!estVide(temp)) {
+
+    for(t_listeUnite temp = unites; !estVide(temp); temp = temp->suiv) {
         tab[i] = temp->pData;
         i++;
-        temp = temp->suiv;
     }
 
     return tab;
@@ -50,12 +49,7 @@ t_unite *switchIndices(t_unite *tab, int i, int j) {
     return tab;
 }
 
-//  Cree et renvoi un tableau d'unite trie par vitesse d'attaque.
-t_unite* triVitesseAttaque(t_listeUnite unites) {
-    int taille = lenListe(unites);
-    t_unite *tab = alloueUnitesTab(taille);
-    tab = remplitUnitesTab(unites, tab);
-
+t_unite* triTableauVitesseAttaque(t_unite *tab, int taille) {
     for(int i = 0; i < taille; i++) {
         int indMin = 0;
         float minVitesseAttaque = FLT_MAX;
@@ -71,6 +65,36 @@ t_unite* triVitesseAttaque(t_listeUnite unites) {
     }
 
     return tab;
+}
+
+//  Cree et renvoi un tableau d'unite trie par vitesse d'attaque.
+t_unite* triVitesseAttaque(t_listeUnite unites) {
+    int taille = lenListe(unites);
+    t_unite *tab = alloueUnitesTab(taille);
+    tab = remplitUnitesTab(unites, tab);
+    return triTableauVitesseAttaque(tab, taille);
+}
+
+//  Concatene deux listes d'unites en un tableau trié par vitesse d'attaque
+t_tabUnite concatToSortedTab(t_listeUnite unitesOne, t_listeUnite unitesTwo) {
+    int len = lenListe(unitesOne) + lenListe(unitesTwo);
+    t_unite *tab = alloueUnitesTab(len);
+    int i = 0;
+    for(t_listeUnite temp = unitesOne; !estVide(temp); temp = temp->suiv) {
+        tab[i] = temp->pData;
+        i++;
+    }
+    for(t_listeUnite temp = unitesTwo; !estVide(temp); temp = temp->suiv) {
+        tab[i] = temp->pData;
+        i++;
+    }
+
+    tab = triTableauVitesseAttaque(tab, len);
+
+    t_tabUnite tabUnite = (t_tabUnite) malloc(sizeof(struct s_tabUnite));
+    tabUnite->tab = tab;
+    tabUnite->taille = len;
+    return tabUnite;
 }
 
 //Random Int--------------------------------------

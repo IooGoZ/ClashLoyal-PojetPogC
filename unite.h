@@ -30,6 +30,9 @@ typedef struct s_unite {
 	int posX, posY;
 	bool peutAttaquer;
 	int coutEnElixir;
+
+	//permet de determiner à quel joueur appartient une unité. (Utile pour les combats)
+	bool playerOnTop;
 } *t_unite;
 
 typedef struct s_cell {
@@ -108,7 +111,9 @@ float getTempsDeplacement(t_unite unite);
 
 void setTempsDeplacement(t_unite unite, float time);
 
+bool getPlayerUnite(t_unite unite);
 
+void setPlayerUnite(t_unite unite, bool playerOnTop);
 
 t_listeUnite creerPileVide(void);
 
