@@ -19,7 +19,6 @@ int main()
 	while (!jeuEstTermine(stats)) {
 		unsigned long millis = (clock() -  current_time) * 1000 / CLOCKS_PER_SEC;
 		if (millis>=TEMPS_PAR_TOUR) {
-
 			phaseCombat(stats);
 			phaseDeplacement(stats);
 			phaseCreation(stats);

@@ -91,7 +91,7 @@ int getPrice(t_unite unite) {
 
 //  Permet de d�clencher la tentative d�achat d�un joueur d�une unit�.
 t_unite acheteUnite(t_player player) {
-    if (getElixir(player) >= 1 && rand()%3==1) {
+    if (getElixir(player) >= 1 && rand()%2==1) {
         t_unite newUnite = randomUnite();
         int price = getPrice(newUnite);
         while(getElixir(player) < price) {

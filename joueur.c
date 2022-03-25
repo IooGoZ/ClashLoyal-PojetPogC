@@ -48,7 +48,7 @@ t_player initPlayer(char * nom, bool playerOnTop) {
 
 //  Vérifie si la tour du roi d’un joueur est détruite.
 bool tourRoiDetruite(t_player player) {
-    return player->tourDuRoi == NULL;
+    return (player->tourDuRoi == NULL);
 }
 
 
@@ -89,9 +89,9 @@ bool tourClassiqueDetruite(t_player player) {
 //  Supprime une unité à un joueur.
 void supprimerUnite(t_player player, t_unite uniteDetruite) {
     if (getType(uniteDetruite) == tourRoi) {
-        player->tourDuRoi == NULL;
+        player->tourDuRoi = NULL;
     } else if (getType(uniteDetruite) == tour) {
-        player->tourClassique == NULL;
+        player->tourClassique = NULL;
     }
     player->listeUnite = supprimer(player->listeUnite, uniteDetruite);
 }

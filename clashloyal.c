@@ -108,5 +108,9 @@ void phaseAffichage(t_jeuStats stats) {
 }
 
 void phaseFin(t_jeuStats stats) {
-
+    if (!tourRoiDetruite(stats->playerOne)) {
+        printf("%s a gagné la partie !", getNom(stats->playerOne));
+    } else {
+        printf("%s a gagné la partie !", getNom(stats->playerTwo));
+    }
 }
