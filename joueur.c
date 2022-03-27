@@ -5,7 +5,6 @@
 #include "unite.h"
 
 
-/*---------------------------------------------------------*/
 
 //  Initialise un joueur, avec un nom et sa position.
 t_player initPlayer(char * nom, bool playerOnTop) {

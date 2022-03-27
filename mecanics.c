@@ -8,10 +8,47 @@
 #include "utils.h"
 
 
+//INITIALISATION DU PLATEAU DE JEU------------------------------------------------------------------------------------------------------
+
+    //Alloue un plateau de taille x*y.
+t_plateauJeu allocPlateau(int x,int y) {
+    t_plateauJeu res;
+    res.maxX = x;
+    res.maxY = y;
+    res.plateau = (t_unite**) malloc(sizeof(t_unite*)*x);
+    for (int i = 0; i < x; i++)
+        res.plateau[i] = (t_unite*) malloc(sizeof(t_unite)*y);
+    return res;
+};
+
+    //Initialise un plateau de jeu. Toutes les cases du plateau sont NULL.
+t_plateauJeu initPlateau(t_plateauJeu jeu) {
+    for (int x = 0; x < jeu.maxX; x++) {
+        for (int y = 0; y < jeu.maxY; y++) {
+            jeu.plateau[x][y] = NULL;
+        }
+    }
+    return jeu;
+}
+
+    //Positionne les unités d’un joueur sur le plateau.
+t_plateauJeu playerToPlateau(t_player player,t_plateauJeu jeu) {
+    for (t_listeUnite i = player->listeUnite; !estVide(i); i = i->suiv) {
+        t_unite unite = i->pData;
+        if (jeu.plateau[unite->posX][unite->posY]!=NULL) {
+            fprintf(stderr, "Erreur playerToPlateau : La case n'est pas vide.\n");
+            printf("Position X : %d\nPosition Y : %d\nCase contenue : %c\nCase a placer : %c\n", unite->posX, unite->posY, uniteToChar(jeu.plateau[unite->posX][unite->posY]->nom),uniteToChar(unite->nom));
+            } else {
+            jeu.plateau[unite->posX][unite->posY] = unite;
+        }
+    }
+    return jeu;
+}
+
 
 //COMBAT------------------------------------------------------------------------------------------------------
 
-//  Effectue l�attaque d�une unit� sur une autre. (pas de v�rification)
+    //Effectue l�attaque d�une unit� sur une autre(pas de v�rification).
 void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee, t_player joueurAttaquee) {
     setAttaque(uniteAttaquante, false);
     minusPV(uniteAttaquee, getDegats(uniteAttaquante));
@@ -20,12 +57,12 @@ void attaque(t_unite uniteAttaquante, t_unite uniteAttaquee, t_player joueurAtta
     }
 }
 
-    //  Calcule la distance entre deux unit�s.
+    //Calcule la distance entre deux unit�s.
 float distance(t_unite uniteA, t_unite uniteB) {
     return sqrtf((float)(pow(getX(uniteA) - getX(uniteB), 2) + pow(getY(uniteA) - getY(uniteB), 2)));
 }
 
-//  V�rifie si une attaque entre deux unit�s est possible (distance/type de cible/possibilité d'attaque)
+    //V�rifie si une attaque entre deux unit�s est possible(distance/type de cible/possibilité d'attaque).
 bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee, bool tourClasssiqueDetruite) {
     if (getAttaque(uniteAttaquante) && distance(uniteAttaquante, uniteAttaquee) <= getPortee(uniteAttaquante)) {
         if (getNom(uniteAttaquee)==tourRoi) {
@@ -39,7 +76,7 @@ bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee, bool tourClass
         return false;
 }
 
-//  Retourne la liste des unit�s adverses atteignables par une unit�.
+    //Retourne la liste des unit�s adverses atteignables par une unit�.
 t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses, bool tourClasssiqueDetruite) {
     t_listeUnite res = creerPileVide();
     for (t_listeUnite i = unitesAdverses; !estVide(i); i = i->suiv) {
@@ -50,46 +87,15 @@ t_listeUnite quiEstAPortee(t_unite unite, t_listeUnite unitesAdverses, bool tour
 	return res;
 }
 
+
 //ECONOMIE------------------------------------------------------------------------------------------------------
-//  Retourne une quantit� d��lixir, compris entre 1 et 3
+
+    //Retourne une quantit� d��lixir, compris entre 1 et 3.
 int getRandomElixirAmount(void) {
     return 1 + (rand()%3);
 }
 
-//  V�rifie si une case est occup�e avant la g�n�ration du plateau de jeu.
-bool caseOccupee(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, int x, int y) {
-    for(t_listeUnite temp = unitePlayerOne; !estVide(temp) ; temp = temp->suiv) {
-        if((getX(temp->pData) == x) && (getY(temp->pData) == y)) {
-            return true;
-        }
-    }
-
-    for(t_listeUnite temp = unitePlayerTwo; !estVide(temp) ; temp = temp->suiv) {
-        if((getX(temp->pData) == x) && (getY(temp->pData) == y)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-//  G�n�re une unit� al�atoire
-t_unite randomUnite(void) {
-    switch(rand()%4) {
-        case 0 : return creerArcher();
-        case 1 : return creerChevalier();
-        case 2 : return creerDragon();
-        case 3 : return creerGargouille();
-        default : return NULL;
-    }
-}
-
-//  Retourne le prix (en �lixir) d'une unit�.
-int getPrice(t_unite unite) {
-    return unite->coutEnElixir;
-}
-
-//  Permet de d�clencher la tentative d�achat d�un joueur d�une unit�.
+    //Permet de d�clencher la tentative d�achat d�un joueur d�une unit�.
 t_unite acheteUnite(t_player player) {
     if (getElixir(player) >= 1 && rand()%2==1) {
         t_unite newUnite = randomUnite();
@@ -106,7 +112,32 @@ t_unite acheteUnite(t_player player) {
         return NULL;
 }
 
+    //Retourne le prix (en �lixir) d'une unit�.
+int getPrice(t_unite unite) {
+    return unite->coutEnElixir;
+}
 
+
+//PLACEMENT/DEPLACEMENT-----------------------------------------------------------------------------------------
+
+    //V�rifie si une case est occup�e avant la g�n�ration du plateau de jeu.
+bool caseOccupee(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, int x, int y) {
+    for(t_listeUnite temp = unitePlayerOne; !estVide(temp) ; temp = temp->suiv) {
+        if((getX(temp->pData) == x) && (getY(temp->pData) == y)) {
+            return true;
+        }
+    }
+
+    for(t_listeUnite temp = unitePlayerTwo; !estVide(temp) ; temp = temp->suiv) {
+        if((getX(temp->pData) == x) && (getY(temp->pData) == y)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+    //Positionne une unite aleatoirement du cote de son joueur.
 void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayerTwo, t_unite unite, bool playerOnTop) {
     int x =-1, y=-1, minX = 0, maxX = 11, minY, maxY;
     if (playerOnTop) {
@@ -123,8 +154,7 @@ void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayer
     positionneUnite(unite, x, y);
 }
 
-//DEPLACEMENT-------------------------------------------------------------------------------------------------
-
+    //Retourne un tableau de deux entiers(coordonnees x et y) de la prochaine position d'une unite.
 int * getNextPosition(t_unite unite) {
     int x = getX(unite), y = getY(unite);
 
@@ -163,4 +193,18 @@ int * getNextPosition(t_unite unite) {
     res[0] = x;
     res[1] = y;
     return res;
+}
+
+
+//GENERATION------------------------------------------------------------------------------------------------------
+
+    //G�n�re une unit� al�atoire.
+t_unite randomUnite(void) {
+    switch(rand()%4) {
+        case 0 : return creerArcher();
+        case 1 : return creerChevalier();
+        case 2 : return creerDragon();
+        case 3 : return creerGargouille();
+        default : return NULL;
+    }
 }
