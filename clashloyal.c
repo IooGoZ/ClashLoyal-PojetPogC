@@ -64,7 +64,7 @@ void phaseDeplacement(t_jeuStats stats) {
 
         if (!(getType(current_unite) == tourRoi || getType(current_unite) == tour)) {
 
-            for (float j = 0; j < getVitesseAttaque(current_unite); j++) {
+            for (float j = 0; j < getVitesseDeplacement(current_unite); j++) {
                 int* pos = getNextPosition(current_unite);
                 if (!caseOccupee(stats->playerOne->listeUnite, stats->playerTwo->listeUnite, pos[0], pos[1])) {
                     positionneUnite(current_unite, pos[0], pos[1]);
