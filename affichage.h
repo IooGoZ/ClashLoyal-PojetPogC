@@ -8,6 +8,26 @@
 #include "unite.h"
 #include "mecanics.h"
 
+//TYPE-------------------------
+
+    typedef struct s_plateauJeu {
+        int maxX;
+        int maxY;
+        t_unite** plateau;
+    } t_plateauJeu;
+
+
+//INITIALISATION DU PLATEAU------------------------------------------------------------------------------------------------------
+
+    //Alloue un plateau de taille x*y.
+    t_plateauJeu allocPlateau(int x,int y);
+
+    //Initialise un plateau de jeu. Toutes les cases du plateau sont NULL.
+    t_plateauJeu initPlateau(t_plateauJeu jeu);
+
+    //Positionne les unités d’un joueur sur le plateau.
+    t_plateauJeu playerToPlateau(t_player player,t_plateauJeu jeu);
+
 
 //FONCTIONS-USUELLES------------
 

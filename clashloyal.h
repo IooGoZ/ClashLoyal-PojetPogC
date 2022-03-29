@@ -8,6 +8,11 @@
 #include "joueur.h"
 #include "mecanics.h"
 #include "affichage.h"
+#include "SDL.h"
+#include "maSDL.h"
+
+#define LARGEURJEU 11
+#define HAUTEURJEU 19
 
 
 typedef struct s_jeuStats {
@@ -30,7 +35,7 @@ void phaseCreation(t_jeuStats stats);
 
 void phaseElixir(t_jeuStats stats);
 
-void phaseAffichage(t_jeuStats stats);
+void phaseAffichage(t_jeuStats stats, SDL_Surface* TabSprite, SDL_Surface* pWinSurf, SDL_Window* pWindow);
 
 void phaseFin(t_jeuStats stats);
 

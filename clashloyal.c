@@ -7,6 +7,8 @@
 #include "mecanics.h"
 #include "affichage.h"
 #include "utils.h"
+#include "SDL.h"
+#include "maSDL.h"
 
 t_jeuStats convertToJeuStat(t_player playerOne, t_player playerTwo) {
 	t_jeuStats res = (t_jeuStats) malloc(sizeof(struct s_jeuStats));
@@ -91,17 +93,17 @@ void phaseElixir(t_jeuStats stats) {
     addElixir(stats->playerTwo, getRandomElixirAmount());
 }
 
-void phaseAffichage(t_jeuStats stats) {
+void phaseAffichage(t_jeuStats stats, SDL_Surface* TabSprite, SDL_Surface* pWinSurf, SDL_Window* pWindow) {
+    t_plateauJeu plateau = allocPlateau(11,19);
+    plateau = initPlateau(plateau);
 
-	t_plateauJeu plateau = allocPlateau(11,19);
-	plateau = initPlateau(plateau);
-
-	plateau = playerToPlateau(stats->playerTwo, plateau);
-	plateau = playerToPlateau(stats->playerOne, plateau);
-
+    plateau = playerToPlateau(stats->playerTwo, plateau);
+    plateau = playerToPlateau(stats->playerOne, plateau);
 
 
-	affichePlateau(plateau);
+    efface_fenetre(pWinSurf);
+    prepareAllSpriteDuJeu(plateau,TabSprite,pWinSurf);
+    maj_fenetre(pWindow);
 
 	printf("Elixir de %s : %d", getNom(stats->playerOne), getElixir(stats->playerOne));
 	printf("\nElixir de %s : %d\n\n\n", getNom(stats->playerTwo), getElixir(stats->playerTwo));
