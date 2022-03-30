@@ -29,5 +29,17 @@
     t_plateauJeu playerToPlateau(t_player player,t_plateauJeu jeu);
 
 
+//FONCTIONS-USUELLES------------
+
+    //Affiche un plateau de jeu.
+    void affichePlateau(t_plateauJeu jeu);
+
+//DEBUG-------------------------------
+
+    void affichePile(t_listeUnite P);
+
+    void afficheEstVide(t_listeUnite P);
+
+    void afficheUniteTab(t_unite *tab, int taille);
 
 #endif

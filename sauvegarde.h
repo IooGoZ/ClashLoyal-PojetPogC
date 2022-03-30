@@ -6,4 +6,11 @@
 #define ENTREEBIN "entree.bin"
 #define SORTIEBIN "sortie.bin"
 
+//Fonctions communes------------------------------------
+
+//Fonctions séquentielles-------------------------------
+
+//Fonctions binaires------------------------------------
+
+
 #endif // SAUVEGARDE_H_INCLUDED

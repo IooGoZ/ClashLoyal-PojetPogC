@@ -72,8 +72,6 @@ int main(int argc, char* argv[])
         // FIN de vos variables                                                              */
         /**********************************************************************/
 
-        clock_t current_time = clock();
-
         while (!jeuEstTermine(stats)){   //VOUS DEVEZ GERER (DETECTER) LA FIN DU JEU -> tourRoiDetruite
                 SDL_PumpEvents(); //do events
 
@@ -87,18 +85,12 @@ int main(int argc, char* argv[])
                 // FIN DE VOS APPELS
                 /***********************************************************************/
 
-                unsigned long millis = (clock() -  current_time) * 1000 / CLOCKS_PER_SEC;
-                if (millis>=TEMPS_PAR_TOUR) {
-                    phaseCombat(stats);
-                    phaseDeplacement(stats);
-                    phaseCreation(stats);
-                    phaseElixir(stats);
-
-                    current_time = clock();
-                }
-
+                phaseCombat(stats);
+                phaseDeplacement(stats);
+                phaseCreation(stats);
+                phaseElixir(stats);
                 phaseAffichage(stats, TabSprite, pWinSurf, pWindow);
-                SDL_Delay(150);  //valeur du délai à modifier éventuellement
+                SDL_Delay(TEMPS_PAR_TOUR);  //valeur du délai à modifier éventuellement
 
                 //LECTURE DE CERTAINES TOUCHES POUR LANCER LES RESTAURATIONS ET SAUVEGARDES
                 const Uint8* pKeyStates = SDL_GetKeyboardState(NULL);
