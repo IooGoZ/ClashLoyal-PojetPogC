@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include "clashloyal.h"
 #include "unite.h"
 #include "joueur.h"
@@ -89,8 +90,12 @@ void phaseCreation(t_jeuStats stats) {
 }
 
 void phaseElixir(t_jeuStats stats) {
-    addElixir(stats->playerOne, getRandomElixirAmount());
-    addElixir(stats->playerTwo, getRandomElixirAmount());
+    int amount = getRandomElixirAmount();
+    if (getElixir(stats->playerOne) + amount <= 5)
+        addElixir(stats->playerOne, amount);
+    amount = getRandomElixirAmount();
+    if (getElixir(stats->playerTwo) + amount <= 5)
+        addElixir(stats->playerTwo, amount);
 }
 
 void phaseAffichage(t_jeuStats stats, SDL_Surface* TabSprite, SDL_Surface* pWinSurf, SDL_Window* pWindow) {
@@ -110,9 +115,14 @@ void phaseAffichage(t_jeuStats stats, SDL_Surface* TabSprite, SDL_Surface* pWinS
 }
 
 void phaseFin(t_jeuStats stats) {
+    char * txt = (char*) malloc(sizeof(char)*100);
     if (!tourRoiDetruite(stats->playerOne)) {
+        strcpy(txt, getNom(stats->playerOne));
         printf("%s a gagné la partie !", getNom(stats->playerOne));
     } else {
+        strcpy(txt, getNom(stats->playerTwo));
         printf("%s a gagné la partie !", getNom(stats->playerTwo));
     }
+    strcat(txt, " a gagné la partie !");
+    message("Partie terminée", txt);
 }

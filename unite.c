@@ -172,7 +172,7 @@ void setPV(t_unite unite, int newPV) {
 	unite->pointsDeVie = newPV;
 }
 
-//  Retourne le nouveau nombre de PV d�une unit�.
+//  Retire une quantité de point de vie à une unité.
 void minusPV(t_unite unite, int degatSubit) {
 	unite->pointsDeVie = getPV(unite) - degatSubit;
 }
@@ -214,24 +214,6 @@ bool getAttaque(t_unite unite) {
 
 void setAttaque(t_unite unite, bool stat) {
 	unite->peutAttaquer = stat;
-}
-
-//  Retourne le temps courant d'une attaque
-float getTempsAttaque(t_unite unite) {
-	return unite->tempsAttaque;
-}
-
-void setTempsAttaque(t_unite unite, float time) {
-	unite->tempsAttaque = time;
-}
-
-//  Retourne le temps courant d'un déplacement
-float getTempsDeplacement(t_unite unite) {
-	return unite->tempsDeplacement;
-}
-
-void setTempsDeplacement(t_unite unite, float time) {
-	unite->tempsDeplacement = time;
 }
 
 bool getPlayerUnite(t_unite unite) {

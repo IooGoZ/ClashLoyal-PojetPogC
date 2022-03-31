@@ -19,13 +19,11 @@
         int pointsDeVie;
 
         float vitesseAttaque;
-        float tempsAttaque;
 
         int degats;
         int portee;
 
         float vitesseDeplacement;
-        float tempsDeplacement;
 
         int posX, posY;
         bool peutAttaquer;
@@ -74,7 +72,7 @@
     //  Permet de d�finir le nombre de PV d�une unit�.
     void setPV(t_unite unite, int newPV);
 
-    //  Retourne le nouveau nombre de PV d�une unit�.
+    //  Retire une quantité de point de vie à une unité.
     void minusPV(t_unite unite, int degatSubit);
 
     //  Retourne la vitesse d�attaque d�une unit�.
@@ -101,16 +99,6 @@
     //  D�finit la possibilit� d�attaque d�une unit�.
     void setAttaque(t_unite unite, bool stat);
 
-    //  Retourne le temps courant d'une attaque
-    float getTempsAttaque(t_unite unite);
-
-    void setTempsAttaque(t_unite unite, float time);
-
-    //  Retourne le temps courant d'un déplacement
-    float getTempsDeplacement(t_unite unite);
-
-    void setTempsDeplacement(t_unite unite, float time);
-
     bool getPlayerUnite(t_unite unite);
 
     void setPlayerUnite(t_unite unite, bool playerOnTop);
@@ -124,6 +112,8 @@
     t_listeUnite empiler(t_listeUnite P, t_unite unite);
 
     t_listeUnite depiler(t_listeUnite P);
+
+    t_listeUnite supprimer(t_listeUnite P, t_unite unite);
 
     t_unite tetePile(t_listeUnite P);
 

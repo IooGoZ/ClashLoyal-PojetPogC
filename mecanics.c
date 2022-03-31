@@ -59,7 +59,7 @@ int getRandomElixirAmount(void) {
 
     //Permet de d�clencher la tentative d�achat d�un joueur d�une unit�.
 t_unite acheteUnite(t_player player) {
-    if (getElixir(player) >= 1 && rand()%3==1) {
+    if (getElixir(player) >= 1 && rand()%2==1) {
         t_unite newUnite = randomUnite();
         int price = getPrice(newUnite);
         while(getElixir(player) < price) {
@@ -118,10 +118,17 @@ void positionneRandomUnite(t_listeUnite unitePlayerOne, t_listeUnite unitePlayer
 
     //Retourne un tableau de deux entiers(coordonnees x et y) de la prochaine position d'une unite.
 int * getNextPosition(t_unite unite) {
-    int x = getX(unite), y = getY(unite);
 
+    int x = getX(unite), y = getY(unite);
         if (getPlayerUnite(unite)) {
-            if (y < 4) {
+            int yLimit;
+            if (getPosition(unite) == air) {
+                yLimit = 14;
+            } else {
+                yLimit = 4;
+            }
+
+            if (y < yLimit) {
                 if (x==5)
                     x++;
                 else
@@ -135,7 +142,14 @@ int * getNextPosition(t_unite unite) {
                     y++;
             }
         } else {
-            if (y > 14) {
+            int yLimit;
+            if (getPosition(unite) == air) {
+                yLimit = 4;
+            } else {
+                yLimit = 14;
+            }
+
+            if (y > yLimit) {
                 if (x == 5)
                     x--;
                 else

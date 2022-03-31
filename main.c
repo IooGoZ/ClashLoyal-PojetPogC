@@ -7,6 +7,7 @@
 #include "SDL.h"
 #include "maSDL.h"    //bibliothèque avec des fonction d'affichage pour le jeu 2048
 #include "clashloyal.h"
+#include "sauvegarde.h"
 #define TEMPS_PAR_TOUR 400
 
 
@@ -122,7 +123,9 @@ int main(int argc, char* argv[])
                         /* Ajouter vos appels de fonctions ci-dessous qd le joueur appuye sur D */
 
                         // APPELEZ ICI VOTRE FONCTION DE SAUVEGARDE/RESTAURATION DEMANDEE
-                        message("Sauvegarde","Placer ici votre fonction de restauration/sauvegarde");
+
+                        saveLisible(stats, "partiebin.cls");
+                        message("Sauvegarde","Sauvegarde du fichier lisible effectué.");
 
                         //Ne pas modifiez les 4 lignes ci-dessous
                         efface_fenetre(pWinSurf);
@@ -134,7 +137,8 @@ int main(int argc, char* argv[])
                         /* Ajouter vos appels de fonctions ci-dessous qd le joueur appyue sur S */
 
                         // APPELEZ ICI VOTRE FONCTION DE SAUVEGARDE/RESTAURATION DEMANDEE
-                        message("Sauvegarde","Placer ici votre fonction de restauration/sauvegarde");
+                        saveBinaire(stats, "partiebin.clb");
+                        message("Sauvegarde","Sauvegarde du fichier binaire effectué.");
 
                         //Ne pas modifiez les 4 lignes ci-dessous
                         efface_fenetre(pWinSurf);
