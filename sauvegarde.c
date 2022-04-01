@@ -10,28 +10,11 @@
 //Fonctions communes------------------------------------
 
 //Fonctions séquentielles-------------------------------
-void printLisibleConstantesTab(FILE* saveFile) {
-    //Tour classique
-    fprintf(saveFile, "%d %d %d %f %d %d %f %d\n", 1, 0, 500, 1.0, 100, 3, 0, 0);
-    //Tour du roi
-    fprintf(saveFile, "%d %d %d %f %d %d %f %d\n", 1, 0, 800, 1.2, 120, 4, 0, 0);
-    //Chevalier
-    fprintf(saveFile, "%d %d %d %f %d %d %f %d\n", 0, 0, 400, 1.5, 250, 1, 2.0, 4);
-    //Archer
-    fprintf(saveFile, "%d %d %d %f %d %d %f %d\n", 1, 0, 80, 0.7, 120, 3, 1.0, 2);
-    //Dragon
-    fprintf(saveFile, "%d %d %d %f %d %d %f %d\n", 1, 2, 200, 1.1, 70, 2, 2.0, 3);
-    //Gargouille
-    fprintf(saveFile, "%d %d %d %f %d %d %f %d\n", 1, 2, 80, 0.6, 90, 1, 3.0, 1);
-}
-
 void saveLisible(t_jeuStats stats, char* path) {
     t_player joueurOne = stats->playerOne;
     t_player joueurTwo = stats->playerTwo;
 
     FILE* saveFile = fopen(path, "w");
-
-    printLisibleConstantesTab(saveFile);
 
     int nomLenJoueurOne = strlen(getNom(joueurOne));
     int nomLenJoueurTwo = strlen(getNom(joueurTwo));
@@ -51,6 +34,76 @@ void saveLisible(t_jeuStats stats, char* path) {
 	for(t_listeUnite temp = getListeUnite(joueurTwo); !estVide(temp); temp = temp->suiv) {
         t_unite currentUnite = temp->pData;
         fprintf(saveFile, "%d %d %d %d %d\n", getType(currentUnite), getPV(currentUnite), getX(currentUnite), getY(currentUnite), getAttaque(currentUnite));
+	}
+
+	fclose(saveFile);
+}
+
+t_unite readLisibleUnite(FILE* saveFile, t_player player) {
+    int typeInt, pv, x, y, peutAttaquer;
+
+    fscanf(saveFile, "%d %d %d %d %d\n", &typeInt, &pv, &x, &y, &peutAttaquer);
+
+    t_uniteDuJeu type = (t_uniteDuJeu) typeInt;
+
+    t_unite unite = getNewUnite(type);
+    setPV(unite, pv);
+    positionneUnite(unite, x, y);
+    setAttaque(unite, (bool) peutAttaquer);
+
+    if (type == tour)
+        player->tourClassique = unite;
+    else if (type == tourRoi)
+        player->tourDuRoi = unite;
+
+    return unite;
+}
+
+void readLisible(t_jeuStats stats, char* path) {
+    t_player joueurOne = stats->playerOne;
+    t_player joueurTwo = stats->playerTwo;
+
+    FILE* saveFile = fopen(path, "r");
+
+    //Déclaration des variables avant lecture
+    int nbElixirJoueurOne, nbElixirJoueurTwo;
+    int nomLenJoueurOne, nomLenJoueurTwo;
+    int listeLenJoueurOne, listeLenJoueurTwo;
+
+    //Lecture des deux premières lignes
+	fscanf(saveFile, "%d %d %d\n", &nbElixirJoueurOne, &nomLenJoueurOne, &listeLenJoueurOne);
+    fscanf(saveFile, "%d %d %d\n", &nbElixirJoueurTwo, &nomLenJoueurTwo, &listeLenJoueurTwo);
+
+    //Préparation des noms
+    char * nomJoueurOne = (char*) malloc(sizeof(char) * nomLenJoueurOne);
+    char * nomJoueurTwo = (char*) malloc(sizeof(char) * nomLenJoueurTwo);
+
+    //Lecture des noms
+    fscanf(saveFile, "%s\n", nomJoueurOne);
+    fscanf(saveFile, "%s\n", nomJoueurTwo);
+
+    //Attribution des valeurs
+    joueurOne->nbElixir = nbElixirJoueurOne;
+    joueurTwo->nbElixir = nbElixirJoueurTwo;
+    joueurOne->nom = nomJoueurOne;
+    joueurTwo->nom = nomJoueurTwo;
+
+    //Supression des listes d'unités
+    t_listeUnite temp;
+    for(temp = getListeUnite(joueurOne); !estVide(temp); temp = depiler(temp));
+    joueurOne->listeUnite = temp;
+    for(temp = getListeUnite(joueurTwo); !estVide(temp); temp = depiler(temp));
+    joueurTwo->listeUnite = temp;
+
+    //Lecture des unités
+	for(int i = 0; i < listeLenJoueurOne; i++) {
+        t_unite unite = readLisibleUnite(saveFile, joueurOne);
+        ajouterUnite(joueurOne, unite);
+	}
+
+	for(int i = 0; i < listeLenJoueurTwo; i++) {
+        t_unite unite = readLisibleUnite(saveFile, joueurTwo);
+        ajouterUnite(joueurTwo, unite);
 	}
 
 	fclose(saveFile);

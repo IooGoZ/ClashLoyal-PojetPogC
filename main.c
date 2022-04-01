@@ -99,7 +99,8 @@ int main(int argc, char* argv[])
                         /* Ajouter vos appels de fonctions ci-dessous qd le joueur appuye sur D */
 
                         // APPELEZ ICI VOTRE FONCTION DE SAUVEGARDE/RESTAURATION DEMANDEE
-                        message("Sauvegarde","Placer ici votre fonction de restauration/sauvegarde");
+                        readLisible(stats, "partiebin.cls");
+                        message("Lecture","La lecture du fichier a bien été effectué.");
 
                         //Ne pas modifiez les 4 lignes ci-dessous
                         efface_fenetre(pWinSurf);
