@@ -1286,7 +1286,7 @@
 	"joueur.h"
 	"utils.h"
 
-1648844533 source:c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.c
+1648901097 source:c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -1296,9 +1296,13 @@
 	"utils.h"
 	"unite.h"
 
-1648634032 c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.h
+1648899295 c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.h
+	"clashloyal.h"
+	"joueur.h"
+	"utils.h"
+	"unite.h"
 
-1648844240 source:c:\users\tom\documents\github\clashloyal-pojetpogc\main.c
+1648899477 source:c:\users\tom\documents\github\clashloyal-pojetpogc\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
