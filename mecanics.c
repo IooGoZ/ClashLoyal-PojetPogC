@@ -27,7 +27,7 @@ float distance(t_unite uniteA, t_unite uniteB) {
     //V�rifie si une attaque entre deux unit�s est possible(distance/type de cible/possibilité d'attaque).
 bool checkAttaque(t_unite uniteAttaquante, t_unite uniteAttaquee, bool tourClasssiqueDetruite) {
     if (getAttaque(uniteAttaquante) && distance(uniteAttaquante, uniteAttaquee) <= getPortee(uniteAttaquante)) {
-        if (getNom(uniteAttaquee)==tourRoi) {
+        if (getType(uniteAttaquee)==tourRoi) {
             return tourClasssiqueDetruite;
         }
         else if (getCible(uniteAttaquante) == solEtAir)
@@ -123,9 +123,9 @@ int * getNextPosition(t_unite unite) {
         if (getPlayerUnite(unite)) {
             int yLimit;
             if (getPosition(unite) == air) {
-                yLimit = 14;
+                yLimit = 13;
             } else {
-                yLimit = 4;
+                yLimit = 5;
             }
 
             if (y < yLimit) {
@@ -144,9 +144,9 @@ int * getNextPosition(t_unite unite) {
         } else {
             int yLimit;
             if (getPosition(unite) == air) {
-                yLimit = 4;
+                yLimit = 5;
             } else {
-                yLimit = 14;
+                yLimit = 13;
             }
 
             if (y > yLimit) {

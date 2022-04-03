@@ -25,7 +25,7 @@ t_plateauJeu allocPlateau(int x,int y) {
     for (int i = 0; i < x; i++)
         res.plateau[i] = (t_unite*) malloc(sizeof(t_unite)*y);
     return res;
-};
+}
 
     //Initialise un plateau de jeu. Toutes les cases du plateau sont NULL.
 t_plateauJeu initPlateau(t_plateauJeu jeu) {

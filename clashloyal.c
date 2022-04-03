@@ -11,6 +11,7 @@
 #include "SDL.h"
 #include "maSDL.h"
 
+//  Convertis deux joueurs en un « t_jeuStats ».
 t_jeuStats convertToJeuStat(t_player playerOne, t_player playerTwo) {
 	t_jeuStats res = (t_jeuStats) malloc(sizeof(struct s_jeuStats));
 	res->playerOne = playerOne;
@@ -18,10 +19,12 @@ t_jeuStats convertToJeuStat(t_player playerOne, t_player playerTwo) {
 	return res;
 }
 
+//  Vérifie si le jeu est terminé.
 bool jeuEstTermine(t_jeuStats stats) {
 	return (tourRoiDetruite(stats->playerOne) || tourRoiDetruite(stats->playerTwo));
 }
 
+//  Initialise les variables nécessaires au fonctionnement du jeu.
 t_jeuStats phaseInitialisation() {
 	srand(time(NULL));
 
@@ -32,6 +35,7 @@ t_jeuStats phaseInitialisation() {
 
 }
 
+//  Décris l’ensemble des actions utiles lors de la phase de combat des unités.
 void phaseCombat(t_jeuStats stats) {
     t_tabUnite concatTab = concatToSortedTab(stats->playerOne->listeUnite, stats->playerTwo->listeUnite);
 
@@ -58,6 +62,7 @@ void phaseCombat(t_jeuStats stats) {
     }
 }
 
+//  Décris l’ensemble des actions utiles lors de la phase de déplacement des unités.
 void phaseDeplacement(t_jeuStats stats) {
     t_tabUnite concatTab = concatToTab(stats->playerOne->listeUnite, stats->playerTwo->listeUnite);
 
@@ -78,6 +83,7 @@ void phaseDeplacement(t_jeuStats stats) {
     }
 }
 
+//  Décris l’ensemble des actions utiles lors de la phase d’achat de nouvelles unités.
 void phaseCreation(t_jeuStats stats) {
     t_unite uniteOne = acheteUnite(stats->playerOne);
     if (uniteOne != NULL)
@@ -89,6 +95,7 @@ void phaseCreation(t_jeuStats stats) {
         positionneRandomUnite(stats->playerOne->listeUnite, stats->playerTwo->listeUnite, uniteTwo, stats->playerTwo->playerOnTop);
 }
 
+//  Décris l’ensemble des actions utiles lors de la phase de don d’élixir aux joueurs.
 void phaseElixir(t_jeuStats stats) {
     int amount = getRandomElixirAmount();
     if (getElixir(stats->playerOne) + amount <= 5)
@@ -98,7 +105,8 @@ void phaseElixir(t_jeuStats stats) {
         addElixir(stats->playerTwo, amount);
 }
 
-void phaseAffichage(t_jeuStats stats, SDL_Surface* TabSprite, SDL_Surface* pWinSurf, SDL_Window* pWindow) {
+//  Décris l’ensemble des actions utiles lors de la phase d’affichage du jeu.
+void phaseAffichage(t_jeuStats stats, SDL_Surface** TabSprite, SDL_Surface* pWinSurf, SDL_Window* pWindow) {
     t_plateauJeu plateau = allocPlateau(11,19);
     plateau = initPlateau(plateau);
 
@@ -114,6 +122,7 @@ void phaseAffichage(t_jeuStats stats, SDL_Surface* TabSprite, SDL_Surface* pWinS
 	printf("\nElixir de %s : %d\n\n\n", getNom(stats->playerTwo), getElixir(stats->playerTwo));
 }
 
+//  Décris l’ensemble des actions utiles lorsque le jeu se termine.
 void phaseFin(t_jeuStats stats) {
     char * txt = (char*) malloc(sizeof(char)*100);
     if (!tourRoiDetruite(stats->playerOne)) {

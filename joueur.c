@@ -58,6 +58,7 @@ int getElixir(t_player player) {
     return player->nbElixir;
 }
 
+//  Retourne le nom du joueur.
 char* getNom(t_player player) {
     return player->nom;
 }

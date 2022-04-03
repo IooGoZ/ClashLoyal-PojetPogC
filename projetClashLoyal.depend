@@ -801,7 +801,7 @@
 	"maSDL.h"
 	"clashloyal.h"
 
-1648632053 source:c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.c
+1648985806 source:c:\users\tom\documents\github\clashloyal-pojetpogc\affichage.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -817,13 +817,13 @@
 	"unite.h"
 	"mecanics.h"
 
-1648217642 c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.h
+1648984028 c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.h
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
 	"unite.h"
 
-1648662832 c:\users\tom\documents\github\clashloyal-pojetpogc\unite.h
+1648984311 c:\users\tom\documents\github\clashloyal-pojetpogc\unite.h
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -835,7 +835,7 @@
 	"unite.h"
 	"joueur.h"
 
-1648643699 source:c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.c
+1648985842 source:c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -1227,7 +1227,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1648631744 c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.h
+1648985148 c:\users\tom\documents\github\clashloyal-pojetpogc\clashloyal.h
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -1238,7 +1238,7 @@
 	"SDL.h"
 	"maSDL.h"
 
-1648391924 source:c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.c
+1648984023 source:c:\users\tom\documents\github\clashloyal-pojetpogc\joueur.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -1253,7 +1253,7 @@
 1648629791 c:\users\tom\documents\github\clashloyal-pojetpogc\masdl.h
 	"clashloyal.h"
 
-1648643592 source:c:\users\tom\documents\github\clashloyal-pojetpogc\mecanics.c
+1648985675 source:c:\users\tom\documents\github\clashloyal-pojetpogc\mecanics.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -1270,14 +1270,14 @@
 	"unite.h"
 	"joueur.h"
 
-1648661869 source:c:\users\tom\documents\github\clashloyal-pojetpogc\unite.c
+1648984298 source:c:\users\tom\documents\github\clashloyal-pojetpogc\unite.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 	<math.h>
 	"unite.h"
 
-1648151034 source:c:\users\tom\documents\github\clashloyal-pojetpogc\utils.c
+1648984568 source:c:\users\tom\documents\github\clashloyal-pojetpogc\utils.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -1286,7 +1286,7 @@
 	"joueur.h"
 	"utils.h"
 
-1648901097 source:c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.c
+1648982527 source:c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -1296,7 +1296,7 @@
 	"utils.h"
 	"unite.h"
 
-1648899295 c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.h
+1648982586 c:\users\tom\documents\github\clashloyal-pojetpogc\sauvegarde.h
 	"clashloyal.h"
 	"joueur.h"
 	"utils.h"

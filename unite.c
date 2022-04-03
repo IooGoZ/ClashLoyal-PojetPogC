@@ -212,24 +212,28 @@ bool getAttaque(t_unite unite) {
 	return unite->peutAttaquer;
 }
 
+//  D�finit la possibilit� d�attaque d�une unit�.
 void setAttaque(t_unite unite, bool stat) {
 	unite->peutAttaquer = stat;
 }
 
+//  Retourne le joueur (playerOnTop) auquel appartient l’unité.
 bool getPlayerUnite(t_unite unite) {
     return unite->playerOnTop;
 }
 
+//  Définit le joueur (playerOnTop) auquel appartient l’unité.
 void setPlayerUnite(t_unite unite, bool playerOnTop) {
     unite->playerOnTop = playerOnTop;
 }
 
+//  Retourne le type d’une unité.
 t_uniteDuJeu getType(t_unite unite) {
     return unite->nom;
 }
 
 //Piles--------------------------------------------------------------
-
+//  Créer une pile chainée vide d’unité.
 t_listeUnite creerPileVide() {
 	t_listeUnite res = (t_listeUnite) malloc(sizeof(struct s_cell));
 	res->pData = NULL;
@@ -237,10 +241,12 @@ t_listeUnite creerPileVide() {
 	return res;
 }
 
+//  Vérifie si une pile est vide.
 bool estVide(t_listeUnite P) {
 	return (P->pData == NULL) && (P->suiv == NULL);
 }
 
+//  Ajoute une unité à une pile existante.
 t_listeUnite empiler(t_listeUnite P, t_unite unite) {
 	t_listeUnite nouv = (t_listeUnite) malloc(sizeof(struct s_cell));
 
@@ -250,6 +256,7 @@ t_listeUnite empiler(t_listeUnite P, t_unite unite) {
 	return nouv;
 }
 
+//  Retire la première unité de la pile. Libère la mémoire associée à l’unité.
 t_listeUnite depiler(t_listeUnite P) {
 	if (estVide(P)) {
 		return P;
@@ -261,6 +268,7 @@ t_listeUnite depiler(t_listeUnite P) {
 
 }
 
+//  Supprime une unité spécifique de la pile. Libère la mémoire associée à l’unité.
 t_listeUnite supprimer(t_listeUnite P, t_unite unite) {
 	if (estVide(P)) {
 		return P;
@@ -280,6 +288,7 @@ t_listeUnite supprimer(t_listeUnite P, t_unite unite) {
 	}
 }
 
+//  Retourne la première unité de la pile.
 t_unite tetePile(t_listeUnite P) {
 	return P->pData;
 }

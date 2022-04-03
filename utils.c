@@ -49,6 +49,7 @@ t_unite *switchIndices(t_unite *tab, int i, int j) {
     return tab;
 }
 
+//  Tri la liste des unités pouvant attaquer (à vérifier), par vitesse d’attaque.
 t_unite* triTableauVitesseAttaque(t_unite *tab, int taille) {
     for(int i = 0; i < taille; i++) {
         int indMin = 0;

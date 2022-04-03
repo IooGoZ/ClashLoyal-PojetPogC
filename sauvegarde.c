@@ -7,9 +7,9 @@
 #include "utils.h"
 #include "unite.h"
 
-//Fonctions communes------------------------------------
-
 //Fonctions séquentielles-------------------------------
+
+//Sauvegarde un fichier éditable avec éditeur de texte.
 void saveLisible(t_jeuStats stats, char* path) {
     t_player joueurOne = stats->playerOne;
     t_player joueurTwo = stats->playerTwo;
@@ -40,6 +40,7 @@ void saveLisible(t_jeuStats stats, char* path) {
 	fclose(saveFile);
 }
 
+//Lit une unité sauvegardée avec « saveLisible ».
 t_unite readLisibleUnite(FILE* saveFile, t_player player) {
     int typeInt, pv, x, y, peutAttaquer;
 
@@ -60,6 +61,7 @@ t_unite readLisibleUnite(FILE* saveFile, t_player player) {
     return unite;
 }
 
+//Lit un fichier sauvegardé avec « saveLisible ».
 void readLisible(t_jeuStats stats, char* path) {
     t_player joueurOne = stats->playerOne;
     t_player joueurTwo = stats->playerTwo;
@@ -111,6 +113,7 @@ void readLisible(t_jeuStats stats, char* path) {
 }
 //Fonctions binaires------------------------------------
 
+//Sauvegarde un fichier binaire.
 void saveBinaire(t_jeuStats stats, char* path) {
     t_player joueurOne = stats->playerOne;
     t_player joueurTwo = stats->playerTwo;
@@ -152,6 +155,7 @@ void saveBinaire(t_jeuStats stats, char* path) {
 	fclose(saveFile);
 }
 
+//Lit une unité sauvegardée avec « saveBinaire ».
 t_unite readBinaireUnite(FILE* saveFile, t_player player) {
     t_unite unite = (t_unite) malloc(sizeof(struct s_unite));
 
@@ -165,6 +169,7 @@ t_unite readBinaireUnite(FILE* saveFile, t_player player) {
     return unite;
 }
 
+//Lit un fichier sauvegardé avec « saveBinaire ».
 void readBinaire(t_jeuStats stats, char* path) {
     t_player joueurOne = stats->playerOne;
     t_player joueurTwo = stats->playerTwo;
