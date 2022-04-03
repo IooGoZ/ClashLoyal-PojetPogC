@@ -166,6 +166,8 @@ int * getNextPosition(t_unite unite) {
 
 
     int* res = (int *) malloc(sizeof(int)*2);
+    if (x < 0 || x > 10 || y < 0 || y > 18)
+        x = getX(unite), y = getY(unite);
     res[0] = x;
     res[1] = y;
     return res;
