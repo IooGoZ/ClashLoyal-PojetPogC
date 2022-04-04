@@ -38,8 +38,9 @@ t_jeuStats phaseInitialisation() {
 //  Décris l’ensemble des actions utiles lors de la phase de combat des unités.
 void phaseCombat(t_jeuStats stats) {
     t_tabUnite concatTab = concatToSortedTab(stats->playerOne->listeUnite, stats->playerTwo->listeUnite);
+    int tailleTab = concatTab->taille;
 
-    for (int i = 0; i < concatTab->taille; i++) {
+    for (int i = 0; i < tailleTab; i++) {
         t_unite current_unite = concatTab->tab[i];
         t_listeUnite uniteAdverse;
         t_player playerAttaquee;
@@ -54,6 +55,9 @@ void phaseCombat(t_jeuStats stats) {
         if (!estVide(unitesAPortee)) {
             attaque(current_unite, unitesAPortee->pData, playerAttaquee);
         }
+
+        concatTab = concatToSortedTab(stats->playerOne->listeUnite, stats->playerTwo->listeUnite);
+        tailleTab = concatTab->taille;
     }
 
     for (int i = 0; i < concatTab->taille; i++) {
