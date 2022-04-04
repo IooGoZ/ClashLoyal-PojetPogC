@@ -123,9 +123,9 @@ int * getNextPosition(t_unite unite) {
         if (getPlayerUnite(unite)) {
             int yLimit;
             if (getPosition(unite) == air) {
-                yLimit = 13;
+                yLimit = 14;
             } else {
-                yLimit = 5;
+                yLimit = 4;
             }
 
             if (y < yLimit) {
@@ -144,9 +144,9 @@ int * getNextPosition(t_unite unite) {
         } else {
             int yLimit;
             if (getPosition(unite) == air) {
-                yLimit = 5;
+                yLimit = 4;
             } else {
-                yLimit = 13;
+                yLimit = 14;
             }
 
             if (y > yLimit) {
